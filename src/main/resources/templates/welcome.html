@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shamdal Khokad | Portfolio</title>
+  
+   <link th:href="@{/css/landingpage.css}" rel="stylesheet"  />
+  
+
+  <script>
+    // Smooth scroll for anchor links
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1>Shamdal Khokad</h1>
+    <h2>Senior Java Developer</h2>
+    <a th:href="@{/images/Latest_Resume_2025.pdf}" href="classpath:images/Latest_Resume_2025.pdf" download class="btn">Download Resume</a>
+    <a href="#contact" class="btn">Contact Me</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Experienced Java developer with 3.6+ years of hands-on experience in backend development, Spring ecosystem, and scalable application design.</p>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <h2>Work Experience</h2>
+    <div class="job">
+      <h3>Senior Java Developer - Dot Eventures Pvt. Ltd.</h3>
+      <span>April 2023 - Present</span>
+      <ul>
+        <li>Led a team of 10 developers on an educational app project</li>
+        <li>Built REST APIs with Spring Boot and implemented JWT security</li>
+      </ul>
+    </div>
+    <div class="job">
+      <h3>Associate Software Engineer - Virtusa</h3>
+      <span>May 2021 - Dec 2022</span>
+      <ul>
+        <li>Built and maintained Java-based applications</li>
+        <li>Handled software testing, debugging and code optimization</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>Java, Spring Boot, REST API</li>
+      <li>HTML, CSS, JavaScript</li>
+      <li>MySQL, Oracle</li>
+      <li>Hibernate, JPA, Maven</li>
+      <li>JUnit, Log4j, Git</li>
+    </ul>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <h2>Education</h2>
+    <div>
+      <strong>BE in CSE</strong> - Govt. College of Engineering, Chandrapur <br>
+      <span>Grade: 9.5</span>
+    </div>
+    <div>
+      <strong>Diploma in CSE</strong> - Govt. Polytechnic Jalna <br>
+      <span>Percentage: 82%</span>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Check out my GitHub for Java practice projects: <a href="https://github.com/Shamdalkhokad123/JavaPractices" target="_blank">GitHub Profile</a></p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="#">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p>Email: kshamdal@gmail.com | Mobile: 9890824574</p>
+    <p>
+      <a href="https://linkedin.com/in/shamdal-khokad" target="_blank">LinkedIn</a> |
+      <a href="https://github.com/Shamdalkhokad123/JavaPractices" target="_blank">GitHub</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Shamdal Khokad</p>
+  </footer>
+</body>
+</html>

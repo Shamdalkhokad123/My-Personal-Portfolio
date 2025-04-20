@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shamdal Khokad | Portfolio</title>
+ 
+  <link th:href="@{/css/welcomeCustom.css}" rel="stylesheet"  />
+  
+  <script>
+     document.addEventListener("DOMContentLoaded", function () {
+      const links = document.querySelectorAll(".sidebar a");
+      const sections = document.querySelectorAll(".content section");
+      const sidebar = document.querySelector(".sidebar");
+      const menuToggle = document.getElementById("menu-toggle");
+
+      function activateSection(id) {
+        sections.forEach(section => section.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+
+        links.forEach(link => link.classList.remove("active"));
+        document.querySelector(`.sidebar a[href='#${id}']`).classList.add("active");
+
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove("active");
+        }
+      }
+
+      links.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const id = this.getAttribute("href").substring(1);
+          activateSection(id);
+        });
+      });
+
+      activateSection(sections[0].id);
+
+      menuToggle.addEventListener("click", function () {
+        sidebar.classList.toggle("active");
+      });
+    });
+  </script>
+</head>
+<body>
+<button id="menu-toggle" class="menu-toggle">☰</button>
+  <div class="sidebar">
+    <h2>My Portfolio</h2>
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div class="content">
+    <section id="hero">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1>Shamdal Khokad</h1>
+          <h3>Senior Java Developer<i>(4+ years of relevent experiance)</i>	
+          
+          	</h3>
+			
+		<a th:href="@{/images/Latest_Resume_2025.pdf}" download class="btn">Download Resume</a>
+          <div class="contact-links">
+ 			 <p><strong>📞 Mobile:</strong> +91-9890824574</p>
+ 			 <p><strong>📧 Email:</strong> <a href="mailto:shamdal@example.com">kshamdal@gmail.com</a></p>
+			  <p>
+			    <a href="https://github.com/Shamdalkhokad123" target="_blank">🌐 GitHub</a> |
+			    <a href="https://www.linkedin.com/in/shamdal-khokad-70277816a/" target="_blank">💼 LinkedIn</a> |
+			    <a href="https://www.instagram.com/shamdalkhokad/" target="_blank">📸 Instagram</a>
+			  </p>
+		</div>
+          
+        </div>
+        <div class="hero-image">
+          <img th:src="@{/images/shamdalprofilephoto.png}" alt="Profile Picture">
+        </div>
+      </div>
+      <div class="marquee">
+						<p>Core Java &nbsp;|&nbsp; Advanced Java &nbsp;|&nbsp; Design
+							Pattern &nbsp;|&nbsp; REST API &nbsp;|&nbsp; Microservices
+							&nbsp;|&nbsp; Spring Boot &nbsp;|&nbsp; Spring MVC &nbsp;|&nbsp;
+							MySQL &nbsp;|&nbsp; Hibernate &nbsp;|&nbsp; MAVEN &nbsp;|&nbsp;
+							Agile &nbsp;|&nbsp; Git & GitHub &nbsp;|&nbsp; JUnit
+							&nbsp;|&nbsp; HTML &nbsp;|&nbsp; CSS &nbsp;|&nbsp; JS</p>
+					</div>
+    </section>
+
+   <section id="about">
+  <h2>About Me</h2>
+
+  <!-- About Intro Card -->
+  <div class="about-card">
+    <p><strong>Highly skilled</strong> and <strong>result-oriented software engineer</strong> with over <strong>3.6 years</strong> of experience in software development, specializing in Java technologies. Proficient in analyzing, designing, and optimizing applications with a strong focus on <strong>system efficiency</strong>, <strong>API documentation</strong>, and <strong>software testing</strong>. Adept at ensuring <strong>seamless deployment</strong> and <strong>maintenance</strong> while contributing to robust and scalable solutions.</p>
+  </div>
+
+  <h3>Key Responsibilities:</h3>
+
+  <!-- Responsibilities Grid -->
+  <div class="responsibilities-grid">
+
+    <div class="responsibility-card">
+      <p><strong>Developed and integrated REST APIs</strong> using Spring Boot, ensuring seamless communication with front-end technologies like JSP and JavaScript.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p><strong>Secured all REST APIs using JWT</strong>, implementing robust authentication and authorization mechanisms to enhance application security.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p>Designed, built, and maintained Java-based applications & websites.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p>Contributed to and participated in <strong>software and architectural development</strong> activities.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p>Developed well-designed, efficient, and testable code.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p>Conducted <strong>software analysis, programming, testing, and debugging</strong>.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p>Troubleshot and resolved reported issues, responding to queries in a timely manner.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p>Prepared and produced <strong>releases of software components</strong>.</p>
+    </div>
+
+    <div class="responsibility-card">
+      <p>Produced detailed design documentation and improved code quality by implementing best practices.</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <section id="experience">
+  <h2>Work Experience</h2>
+
+  <div class="experience-container">
+
+    <!-- Dot Eventures Experience Card -->
+    <div class="experience-card">
+      <h3>Senior Java Developer</h3>
+      <p class="company">Dot Eventures Pvt. Ltd.</p>
+      <span class="duration">April 2023 - Present</span>
+      <p><strong>A result-oriented software engineer</strong> with <strong>2 year 1 months</strong> of experience in analyzing, programming, testing and debugging of applications, completing documentation and procedures for installation and maintenance.</p>
+
+      <h4>Key Responsibilities:</h4>
+      <ul>
+        <li><strong>Led a team of 10 developers</strong> in creating a scalable educational application, reducing processing time by 20%.</li>
+        <li><strong>Developed and integrated REST APIs</strong> using Spring Boot, ensuring seamless communication with front-end technologies like JSP and JavaScript.</li>
+        <li><strong>Secured all REST APIs using JWT</strong>, implementing robust authentication and authorization mechanisms to enhance application security.</li>
+        <li>Optimized the existing codebase, resulting in a <strong>10% increase</strong> in application performance for key clients.</li>
+        <li>Developed and maintained documentation for over 50 APIs, ensuring compliance with industry standards.</li>
+        <li>Designed and deployed a new feature module that boosted customer engagement.</li>
+      </ul>
+    </div>
+
+    <!-- Virtusa Experience Card -->
+    <div class="experience-card">
+      <h3>Associate Software Engineer</h3>
+      <p class="company">Virtusa</p>
+      <span class="duration">May 2021 - Dec 2022</span>
+
+      <h4>Key Responsibilities:</h4>
+      <ul>
+        <li>Designed, built, and maintained Java-based applications & websites.</li>
+        <li>Contributed and took part in software and architectural development activities.</li>
+        <li>Developed well-designed, efficient, and testable code.</li>
+        <li>Conducted software analysis, programming, testing, and debugging.</li>
+        <li>Troubleshot and resolved reported issues and replied to queries in a timely manner.</li>
+        <li>Prepared and produced releases of software components.</li>
+        <li>Produced detailed design documentation.</li>
+        <li>Improved code quality by implementing best practices.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+   <section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-cards">
+    <div class="skill-card">
+      <h3>Backend</h3>
+      <ul class="skills-list">
+        <li>Core Java</li>
+        <li>Advanced Java</li>
+        <li>Design Pattern</li>
+        <li>REST API</li>
+        <li>Microservices</li>
+        <li>Spring Boot</li>
+        <li>Spring MVC</li>
+        <li>Hibernate</li>
+        <li>Maven</li>
+        <li>JUnit</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Frontend</h3>
+      <ul class="skills-list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Database & Tools</h3>
+      <ul class="skills-list">
+        <li>MySQL</li>
+        <li>GIT & GitHub</li>
+        <li>Agile</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+ <section id="education">
+  <h2>Education</h2>
+  <div class="education-cards">
+    <div class="education-card">
+      <h3>BE in CSE</h3>
+      <p><strong>Institute:</strong> Govt. College of Engineering, Chandrapur</p>
+      <p><strong>Duration:</strong> 2017 - 2020</p>
+      <p><strong>Grade:</strong> 9.5</p>
+    </div>
+    <div class="education-card">
+      <h3>Diploma in CSE</h3>
+      <p><strong>Institute:</strong> Govt. Polytechnic Jalna</p>
+      <p><strong>Duration:</strong> 2015 - 2017</p>
+      <p><strong>Percentage:</strong> 82%</p>
+    </div>
+    <div class="education-card">
+      <h3>10th Class</h3>
+      <p><strong>School:</strong> Swatantraveer Savarkar Vidyalaya, Khamgaon</p>
+      <p><strong>Percentage:</strong> 88%</p>
+    </div>
+  </div>
+</section>
+
+   <section id="projects">
+  <h2>Projects</h2>
+  <p>Check out my GitHub for Java practice projects: 
+    <a href="https://github.com/Shamdalkhokad123/JavaPractices" target="_blank">GitHub Profile</a>
+  </p>
+
+  <div class="projects-gallery">
+
+    <!-- Grocery Mart Project -->
+    <div class="project-card">
+      <img th:src="@{/images/grocerymart111.jpg}" style="width:500;height:250;" alt="Grocery Mart Project">
+      <h3>Grocery Mart</h3>
+      <p>This project is used to sell grocery-related items online.</p>
+      <p><strong>Tech Stack:</strong> Spring, Spring MVC, Hibernate, JSP, HTML, CSS, JS, MySQL</p>
+      <a href="https://github.com/Shamdalkhokad123/GroceryMart" target="_blank">GitHub</a>
+    </div>
+
+    <!-- Employee Management System -->
+    <div class="project-card">
+      <img th:src="@{/images/employeemanagementsystem.png}" style="width:500;height:250;" alt="Employee Management System">
+      <h3>Employee Management System</h3>
+      <p>This project handles employee-related operations such as add, update, delete, and search.</p>
+      <p><strong>Tech Stack:</strong> C#.NET, ADO.NET, Visual Studio, HTML, CSS, JS, MySQL</p>
+      <a href="https://github.com/Shamdalkhokad123/Employee-management-sham" target="_blank">GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+   <section id="certifications">
+  <h2>Certifications</h2>
+  <div class="certifications-container">
+
+    <div class="cert-card">
+      <h3>Java Full Stack Development</h3>
+      <p>Naresh Technology</p>
+    </div>
+
+    <div class="cert-card">
+      <h3>Spring Boot Microservices</h3>
+      <p>Udemy</p>
+    </div>
+
+    <div class="cert-card">
+      <h3>SQL and Databases for Developers</h3>
+      <p>Naresh Technology</p>
+    </div>
+    
+    <div class="cert-card">
+      <h3>Python and Django</h3>
+      <p>Naresh Technology</p>
+    </div>
+    
+
+  </div>
+</section>
+
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <form action="#">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p>Email: <a href="mailto:kshamdal@gmail.com">kshamdal@gmail.com</a> | Mobile: <a href="tel:9890824574">9890824574</a></p>
+      <p>
+        <a href="https://github.com/Shamdalkhokad123" target="_blank">🌐 GitHub</a> |
+			    <a href="https://www.linkedin.com/in/shamdal-khokad-70277816a/" target="_blank">💼 LinkedIn</a> |
+			    <a href="https://www.instagram.com/shamdalkhokad/" target="_blank">📸 Instagram</a>
+</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Shamdal Khokad</p>
+    </footer>
+  </div>
+</body>
+</html>
