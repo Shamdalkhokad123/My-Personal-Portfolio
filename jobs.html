@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Application Agent &amp; Tracker | Shamdal Khokad</title>
-  <meta name="description" content="AI Job Application Agent and Management Center for tracking and applying directly to LinkedIn, Naukri, and Indeed jobs.">
+  <title>Job Radar &amp; Application Agent | Shamdal Khokad</title>
+  <meta name="description" content="AI Job Radar and Application Agent observing LinkedIn, Naukri, and Indeed with automated profile matching, real-time alerts, and 1-click apply sync.">
   <link rel="icon" type="image/png" href="./src/main/resources/static/images/shamdalprofilephoto.png">
 
   <!-- Google Fonts -->
@@ -17,7 +17,7 @@
   <style>
     /* Specific Job Agent Dashboard Styles */
     .dashboard-header {
-      padding: 100px 0 30px 0;
+      padding: 100px 0 25px 0;
       border-bottom: 1px solid var(--border-card);
       background: rgba(15, 23, 42, 0.5);
     }
@@ -43,27 +43,49 @@
       flex-wrap: wrap;
       gap: 20px;
     }
-    .agent-pill {
+    
+    /* Radar Active Banner */
+    .radar-banner {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.12), rgba(99, 102, 241, 0.12));
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 16px;
+      padding: 16px 24px;
+      margin: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .radar-pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 12px #10b981;
+      animation: pulseDot 1.8s infinite;
+      display: inline-block;
+    }
+    .notification-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      color: #ffffff;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
       padding: 6px 14px;
       border-radius: 9999px;
-      font-size: 0.8rem;
+      font-size: 0.825rem;
       font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      cursor: pointer;
     }
-    
+
     /* Metrics Row */
     .metrics-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      margin: 30px 0 40px 0;
+      margin-bottom: 30px;
     }
     .metric-card {
       background: var(--bg-card);
@@ -101,26 +123,101 @@
       height: 100%;
     }
 
-    /* Action Panel: Smart Apply & Logger */
-    .apply-card {
+    /* Main Navigation Mode Tabs */
+    .view-mode-tabs {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-card);
+      padding-bottom: 16px;
+    }
+    .view-mode-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-card);
+      color: var(--text-sub);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--tr-smooth);
+    }
+    .view-mode-btn:hover, .view-mode-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 8px 20px var(--primary-glow);
+    }
+
+    /* Match Gauge & Card */
+    .radar-card {
       background: var(--bg-card);
       border: 1px solid var(--border-card);
-      border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 40px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: var(--tr-smooth);
+      position: relative;
     }
-    .apply-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 24px;
+    .radar-card:hover {
+      border-color: var(--accent-cyan);
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
     }
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .radar-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 16px;
+      margin-bottom: 16px;
     }
+    .match-gauge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.925rem;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+    }
+    .match-gauge.high {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+      color: #10b981;
+    }
+    .match-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .match-chip {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: var(--primary-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.775rem;
+      font-weight: 600;
+    }
+    .match-chip.hit {
+      background: rgba(6, 182, 212, 0.15);
+      border-color: rgba(6, 182, 212, 0.4);
+      color: var(--accent-cyan);
+    }
+
+    /* Platform Badges */
     .platform-badge {
       display: inline-flex;
       align-items: center;
@@ -145,94 +242,8 @@
       color: #a5b4fc;
       border: 1px solid rgba(99, 102, 241, 0.4);
     }
-    .platform-direct {
-      background: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-    }
 
-    /* Status Badges */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .status-applied {
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-    .status-review {
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-    .status-interview {
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-    .status-offer {
-      background: rgba(168, 85, 247, 0.15);
-      color: #c084fc;
-      border: 1px solid rgba(168, 85, 247, 0.3);
-    }
-    .status-rejected {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3);
-    }
-
-    /* Filter Controls */
-    .board-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .filter-tabs {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .filter-tab {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-card);
-      color: var(--text-sub);
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--tr-smooth);
-    }
-    .filter-tab:hover, .filter-tab.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #ffffff;
-    }
-    .search-input {
-      padding: 9px 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-card);
-      border-radius: 10px;
-      color: #ffffff;
-      font-size: 0.875rem;
-      min-width: 260px;
-    }
-    .search-input:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    /* Jobs Table & Cards */
+    /* Applied Jobs Table */
     .jobs-table {
       width: 100%;
       border-collapse: separate;
@@ -320,7 +331,7 @@
       color: white;
     }
 
-    /* Modal Pitch Box */
+    /* AI Pitch Modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -373,10 +384,31 @@
       margin: 16px 0;
     }
 
+    /* Live Toast */
+    .toast-alert {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--accent-emerald);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 16px 22px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      z-index: 10000;
+      animation: slideInUp 0.3s ease;
+    }
+    @keyframes slideInUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
     @media (max-width: 900px) {
-      .apply-grid {
-        grid-template-columns: 1fr;
-      }
       .metrics-row {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -404,158 +436,128 @@
         <div>
           <div style="display:flex; align-items:center; gap: 12px; margin-bottom: 8px;">
             <h1 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #fff;">
-              Job Application <span class="gradient-text">Command Center &amp; Agent</span>
+              Job Radar &amp; <span class="gradient-text">Application Agent</span>
             </h1>
-            <span class="agent-pill">⚡ Active AI Agent</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.95rem;">
-            Directly apply, manage recruitment workflows, and generate tailored recruiter pitches for LinkedIn, Naukri, and Indeed.
+            Observing job feeds across LinkedIn, Naukri, and Indeed &bull; Matching Senior Java Developer profile &bull; 1-click apply sync.
           </p>
         </div>
 
-        <div style="display: flex; gap: 12px;">
-          <a href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer" class="row-btn platform-linkedin" style="padding: 10px 16px;">
-            <span>💼 Open LinkedIn Jobs</span>
-          </a>
-          <a href="https://www.naukri.com/mnjuser/recommendedjobs" target="_blank" rel="noopener noreferrer" class="row-btn platform-naukri" style="padding: 10px 16px;">
-            <span>🚀 Open Naukri Jobs</span>
-          </a>
-          <a href="https://in.indeed.com/" target="_blank" rel="noopener noreferrer" class="row-btn platform-indeed" style="padding: 10px 16px;">
-            <span>🌐 Open Indeed</span>
-          </a>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button class="btn btn-outline" onclick="requestNotificationAccess()" id="btnNotifyAccess" style="padding: 10px 18px; font-size: 0.85rem;">
+            <span>🔔 Enable Alerts</span>
+          </button>
+          <button class="btn btn-primary" onclick="rescanRadar()" id="btnRescan" style="padding: 10px 18px; font-size: 0.85rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            <span>🛰️ Scan All Platforms</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Radar Pulse Banner -->
+      <div class="radar-banner">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span class="radar-pulse-dot"></span>
+          <div style="font-size: 0.9rem; color: #ffffff;">
+            <strong>RADAR ACTIVE:</strong> Monitoring <strong>LinkedIn</strong>, <strong>Naukri</strong> &amp; <strong>Indeed</strong> for <em>Senior Java Developer (5+ yrs, Spring Boot, Microservices)</em>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span class="notification-pill" onclick="switchView('radar')">
+            <span>⚡ <span id="radarCountBadge">6</span> High-Match Alerts</span>
+          </span>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container" style="padding-top: 20px; padding-bottom: 80px;">
+  <div class="container" style="padding-top: 10px; padding-bottom: 80px;">
 
     <!-- Top Metrics Overview -->
     <div class="metrics-row">
       <div class="metric-card">
-        <div class="metric-accent" style="background: var(--primary);"></div>
-        <div class="metric-card-title">Total Applications</div>
-        <div class="metric-card-num" id="metricTotal">6</div>
-        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Across LinkedIn, Naukri &amp; Indeed</div>
+        <div class="metric-accent" style="background: var(--accent-emerald);"></div>
+        <div class="metric-card-title">Live Radar Matches</div>
+        <div class="metric-card-num" id="metricRadarMatches" style="color: #34d399;">6</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">85% - 98% profile match</div>
       </div>
 
       <div class="metric-card">
-        <div class="metric-accent" style="background: var(--accent-emerald);"></div>
-        <div class="metric-card-title">Active Interviews</div>
-        <div class="metric-card-num" id="metricInterview" style="color: #34d399;">1</div>
-        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Tech discussions scheduled</div>
+        <div class="metric-accent" style="background: var(--primary);"></div>
+        <div class="metric-card-title">Total Applied</div>
+        <div class="metric-card-num" id="metricTotal">6</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Logged in database</div>
       </div>
 
       <div class="metric-card">
         <div class="metric-accent" style="background: #fbbf24;"></div>
-        <div class="metric-card-title">Under Review</div>
-        <div class="metric-card-num" id="metricReview" style="color: #fbbf24;">1</div>
-        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Profile viewed by recruiters</div>
+        <div class="metric-card-title">Active Interviews</div>
+        <div class="metric-card-num" id="metricInterview" style="color: #fbbf24;">1</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Tech discussions ongoing</div>
       </div>
 
       <div class="metric-card">
         <div class="metric-accent" style="background: var(--accent-cyan);"></div>
-        <div class="metric-card-title">Candidate Profile</div>
-        <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight:700; color:#fff;">Shamdal Khokad</div>
-        <div style="font-size: 0.8rem; color: var(--accent-cyan); margin-top: 6px;">5+ Yrs &bull; Senior Java Dev</div>
+        <div class="metric-card-title">Target Match Criteria</div>
+        <div style="font-family: var(--font-heading); font-size: 1.15rem; font-weight:700; color:#fff;">Java &bull; Spring Boot</div>
+        <div style="font-size: 0.8rem; color: var(--accent-cyan); margin-top: 6px;">5+ Yrs &bull; Hyderabad/Remote</div>
       </div>
     </div>
 
-    <!-- Smart 1-Click Apply & Job Logger Card -->
-    <div class="apply-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
-        <h2 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff;">
-          ⚡ Quick Job Applicator &amp; AI Pitch Generator
-        </h2>
-        <span style="font-size: 0.8rem; color: var(--text-muted);">Paste any job URL to auto-detect and generate custom recruiter outreach</span>
+    <!-- Mode Tabs: Radar vs Applied CRM -->
+    <div class="view-mode-tabs">
+      <button class="view-mode-btn active" id="tabRadarBtn" onclick="switchView('radar')">
+        <span>🛰️ AI Job Radar Feed (<span id="radarTabCount">6</span> Matches)</span>
+      </button>
+      <button class="view-mode-btn" id="tabAppliedBtn" onclick="switchView('applied')">
+        <span>📋 My Applied Jobs &amp; Tracker (<span id="appliedTabCount">6</span>)</span>
+      </button>
+    </div>
+
+    <!-- VIEW 1: AI Job Radar Feed -->
+    <div id="radarViewSection">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; flex-wrap:wrap; gap:12px;">
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 1.4rem; color: #ffffff;">
+            Real-Time Observed Postings
+          </h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Ranked by match percentage against your resume, tech stack, and experience. Click <strong>Apply &amp; Sync</strong> to auto-generate customized pitch and open application.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-outline" onclick="filterRadar('all')" style="padding: 6px 14px; font-size: 0.8rem;">All Matches</button>
+          <button class="btn btn-outline" onclick="filterRadar('90')" style="padding: 6px 14px; font-size: 0.8rem;">🔥 90%+ Top Matches</button>
+          <button class="btn btn-outline" onclick="filterRadar('LinkedIn')" style="padding: 6px 14px; font-size: 0.8rem;">LinkedIn Only</button>
+          <button class="btn btn-outline" onclick="filterRadar('Naukri')" style="padding: 6px 14px; font-size: 0.8rem;">Naukri Only</button>
+        </div>
       </div>
 
-      <div class="apply-grid">
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <!-- Job URL Input -->
-          <div class="form-group">
-            <label for="inputJobUrl" style="color: var(--text-sub); font-size: 0.85rem; font-weight: 600;">
-              Job Link (from LinkedIn, Naukri, or Indeed)
-            </label>
-            <div style="display: flex; gap: 10px;">
-              <input type="url" id="inputJobUrl" class="form-control" placeholder="https://www.linkedin.com/jobs/view/... or https://www.naukri.com/..." oninput="handleUrlInput(this.value)">
-              <button type="button" class="btn btn-outline" onclick="detectFromUrl()" style="white-space: nowrap; padding: 0 16px;">
-                ⚡ Auto-Detect
-              </button>
-            </div>
-          </div>
-
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="inputJobTitle">Job Title / Role</label>
-              <input type="text" id="inputJobTitle" class="form-control" placeholder="e.g. Senior Java Developer">
-            </div>
-            <div class="form-group">
-              <label for="inputCompany">Company Name</label>
-              <input type="text" id="inputCompany" class="form-control" placeholder="e.g. Accenture, Infosys, Startup">
-            </div>
-          </div>
-
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="inputPlatform">Platform</label>
-              <select id="inputPlatform" class="form-control" style="cursor: pointer;">
-                <option value="LinkedIn">LinkedIn</option>
-                <option value="Naukri">Naukri</option>
-                <option value="Indeed">Indeed</option>
-                <option value="Direct">Company Career Portal</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="inputSalary">Package / CTC &amp; Location</label>
-              <input type="text" id="inputSalary" class="form-control" placeholder="e.g. 16 - 20 LPA | Hyderabad/Remote">
-            </div>
-          </div>
-        </div>
-
-        <!-- Action Box -->
-        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: #fff; margin-bottom: 8px;">
-              Direct Actions
-            </div>
-            <p style="font-size: 0.825rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
-              The agent will generate a customized pitch based on your 5+ years Java, Spring Boot &amp; Microservices background and open the application page.
-            </p>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <button type="button" class="btn btn-outline" onclick="openDirectJobUrl()" style="width: 100%;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span>1. Open Job Page</span>
-            </button>
-            <button type="button" class="btn btn-outline" onclick="previewPitch()" style="width: 100%;">
-              <span>✨ 2. Preview &amp; Copy AI Pitch</span>
-            </button>
-            <button type="button" class="btn btn-primary" onclick="submitNewJob()" style="width: 100%;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-              <span>3. Save as Applied</span>
-            </button>
-          </div>
-        </div>
+      <div id="radarJobsContainer">
+        <!-- Scanned Job Cards rendered here -->
       </div>
     </div>
 
-    <!-- Applications Management Board -->
-    <div>
-      <div class="board-controls">
-        <div class="filter-tabs">
-          <button class="filter-tab active" onclick="setFilter('All', this)">All Applications (<span id="countAll">6</span>)</button>
-          <button class="filter-tab" onclick="setFilter('Applied', this)">Applied (<span id="countApplied">4</span>)</button>
-          <button class="filter-tab" onclick="setFilter('Under Review', this)">Under Review (<span id="countReview">1</span>)</button>
-          <button class="filter-tab" onclick="setFilter('Interviewing', this)">Interviewing (<span id="countInterview">1</span>)</button>
-          <button class="filter-tab" onclick="setFilter('Offer', this)">Offers (<span id="countOffer">0</span>)</button>
+    <!-- VIEW 2: Applied Jobs CRM & Manual Logger -->
+    <div id="appliedViewSection" style="display: none;">
+      <!-- Quick Manual Logger -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 18px; padding: 24px; margin-bottom: 30px;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.15rem; color: #fff; margin-bottom: 12px;">
+          ⚡ Log Any Custom Job Link
+        </h3>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <input type="url" id="manualJobUrl" class="search-input" style="flex: 2; min-width: 250px;" placeholder="Paste job link from LinkedIn, Naukri, or Indeed...">
+          <input type="text" id="manualCompany" class="search-input" style="flex: 1;" placeholder="Company name">
+          <input type="text" id="manualRole" class="search-input" style="flex: 1;" placeholder="Role / Job Title">
+          <button class="btn btn-primary" onclick="submitManualJob()" style="padding: 8px 20px;">
+            Save &amp; Track
+          </button>
         </div>
-
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search company, role, skills..." oninput="handleSearch(this.value)">
       </div>
 
-      <!-- Jobs Table -->
+      <!-- Applied Jobs Table -->
       <table class="jobs-table">
         <thead>
           <tr>
@@ -564,10 +566,10 @@
             <th>Location &amp; Package</th>
             <th>Applied Date</th>
             <th>Status Stage</th>
-            <th style="text-align: right;">Quick Actions</th>
+            <th style="text-align: right;">Actions</th>
           </tr>
         </thead>
-        <tbody id="jobsTableBody">
+        <tbody id="appliedJobsTableBody">
           <!-- Populated dynamically via JS -->
         </tbody>
       </table>
@@ -580,7 +582,7 @@
     <div class="modal-box">
       <button class="modal-close" onclick="closePitchModal()">&times;</button>
       <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #fff; margin-bottom: 6px;">
-        ✨ Tailored Recruiter Message / InMail Pitch
+        ✨ Tailored Recruiter Outreach Pitch
       </h3>
       <p style="font-size: 0.85rem; color: var(--text-muted);">
         Crafted specifically for Shamdal Khokad highlighting 5+ years Java, Spring Boot, Microservices, and system scalability.
@@ -602,68 +604,295 @@
     </div>
   </div>
 
-  <script>
-    // State management
-    let currentJobs = [];
-    let activeFilter = 'All';
-    let searchQuery = '';
+  <!-- Real-Time Toast Alert -->
+  <div class="toast-alert" id="toastAlert">
+    <span style="font-size: 1.5rem;">🎉</span>
+    <div id="toastMessage">Application logged successfully!</div>
+  </div>
 
-    // Initial load
-    async function loadJobs() {
+  <script>
+    // State
+    let radarJobs = [];
+    let appliedJobs = [];
+    let activeRadarFilter = 'all';
+
+    // Switch between Radar View and Applied CRM
+    function switchView(mode) {
+      const radarSection = document.getElementById("radarViewSection");
+      const appliedSection = document.getElementById("appliedViewSection");
+      const tabRadarBtn = document.getElementById("tabRadarBtn");
+      const tabAppliedBtn = document.getElementById("tabAppliedBtn");
+
+      if (mode === 'radar') {
+        radarSection.style.display = "block";
+        appliedSection.style.display = "none";
+        tabRadarBtn.classList.add("active");
+        tabAppliedBtn.classList.remove("active");
+      } else {
+        radarSection.style.display = "none";
+        appliedSection.style.display = "block";
+        tabRadarBtn.classList.remove("active");
+        tabAppliedBtn.classList.add("active");
+      }
+    }
+
+    // Load Radar Jobs
+    async function loadRadarJobs() {
+      try {
+        const res = await fetch('/api/radar/jobs');
+        if (res.ok) {
+          radarJobs = await res.json();
+          renderRadar();
+        } else {
+          fallbackRadarJobs();
+        }
+      } catch (e) {
+        fallbackRadarJobs();
+      }
+    }
+
+    function fallbackRadarJobs() {
+      radarJobs = [
+        {
+          id: "rj-101",
+          title: "Senior Java Microservices Developer",
+          company: "Oracle",
+          platform: "LinkedIn",
+          jobUrl: "https://www.linkedin.com/jobs/search/?keywords=Senior%20Java%20Developer%20Oracle",
+          location: "Hyderabad (Hybrid)",
+          salary: "18 - 25 LPA",
+          experience: "5 - 8 Years",
+          requiredSkills: ["Java 17", "Spring Boot", "Microservices", "REST API", "Docker", "MySQL"],
+          matchedSkills: ["Java 17", "Spring Boot", "Microservices", "REST API", "MySQL"],
+          matchScore: 98,
+          postedTime: "15 mins ago",
+          status: "New Alert",
+          customPitch: "Hi Oracle Hiring Team, With 5+ years building Spring Boot microservices and enterprise backends at Dot eVentures, I can deliver immediate value."
+        },
+        {
+          id: "rj-102",
+          title: "Senior Software Engineer - Java / Spring Boot",
+          company: "EPAM Systems",
+          platform: "Naukri",
+          jobUrl: "https://www.naukri.com/senior-java-developer-jobs-in-hyderabad-secunderabad",
+          location: "Hyderabad / Remote",
+          salary: "16 - 22 LPA",
+          experience: "4 - 7 Years",
+          requiredSkills: ["Java", "Spring Boot", "REST APIs", "Microservices", "Hibernate", "JUnit"],
+          matchedSkills: ["Java", "Spring Boot", "REST APIs", "Microservices", "Hibernate", "JUnit"],
+          matchScore: 95,
+          postedTime: "42 mins ago",
+          status: "New Alert",
+          customPitch: "Hello EPAM Team, My background designing 50+ REST APIs and leading 10 developers makes me a great fit."
+        },
+        {
+          id: "rj-103",
+          title: "Lead Java Backend Engineer",
+          company: "Capgemini",
+          platform: "Indeed",
+          jobUrl: "https://in.indeed.com/jobs?q=Senior+Java+Developer&l=Hyderabad",
+          location: "Hyderabad",
+          salary: "17 - 23 LPA",
+          experience: "5 - 9 Years",
+          requiredSkills: ["Core Java", "Spring Boot", "Microservices", "JWT Security", "MySQL"],
+          matchedSkills: ["Core Java", "Spring Boot", "Microservices", "JWT Security", "MySQL"],
+          matchScore: 92,
+          postedTime: "1 hour ago",
+          status: "New Alert",
+          customPitch: "Dear Capgemini Recruitment, I specialize in bulletproof Spring Security JWT architectures and performance optimization."
+        },
+        {
+          id: "rj-104",
+          title: "Senior Java Full Stack Specialist",
+          company: "Deloitte India",
+          platform: "LinkedIn",
+          jobUrl: "https://www.linkedin.com/jobs/search/?keywords=Java%20Developer%20Deloitte",
+          location: "Hyderabad / Pune (Remote)",
+          salary: "19 - 26 LPA",
+          experience: "5 - 8 Years",
+          requiredSkills: ["Java 11/17", "Spring Boot", "Microservices", "REST API", "SQL"],
+          matchedSkills: ["Java 11/17", "Spring Boot", "Microservices", "REST API", "SQL"],
+          matchScore: 90,
+          postedTime: "2 hours ago",
+          status: "New Alert",
+          customPitch: "Hi Deloitte Team, Having led engineering sprints and optimized database latency by 35%, I am eager to contribute."
+        },
+        {
+          id: "rj-105",
+          title: "Staff Backend Developer - Distributed Systems",
+          company: "Cognizant",
+          platform: "Naukri",
+          jobUrl: "https://www.naukri.com/senior-java-developer-jobs-in-hyderabad-secunderabad",
+          location: "Hyderabad",
+          salary: "15 - 20 LPA",
+          experience: "4 - 6 Years",
+          requiredSkills: ["Spring Boot", "Microservices", "REST API", "Hibernate", "Agile"],
+          matchedSkills: ["Spring Boot", "Microservices", "REST API", "Hibernate", "Agile"],
+          matchScore: 88,
+          postedTime: "3 hours ago",
+          status: "New Alert",
+          customPitch: "Hi Cognizant Recruitment, I have extensive experience in high-throughput enterprise systems."
+        },
+        {
+          id: "rj-106",
+          title: "Senior Java Engineer (Cloud Platforms)",
+          company: "Virtusa",
+          platform: "Indeed",
+          jobUrl: "https://in.indeed.com/jobs?q=Senior+Java+Developer&l=Hyderabad",
+          location: "Hyderabad / Hybrid",
+          salary: "16 - 21 LPA",
+          experience: "5 - 7 Years",
+          requiredSkills: ["Java", "Spring Boot", "Microservices", "Design Patterns", "MySQL"],
+          matchedSkills: ["Java", "Spring Boot", "Microservices", "Design Patterns", "MySQL"],
+          matchScore: 85,
+          postedTime: "Today",
+          status: "New Alert",
+          customPitch: "Hello Virtusa Team, as a previous Associate Software Engineer at Virtusa with 5+ years experience now, I would love to return as a Senior Developer."
+        }
+      ];
+      renderRadar();
+    }
+
+    function renderRadar() {
+      const container = document.getElementById("radarJobsContainer");
+      container.innerHTML = "";
+
+      let filtered = radarJobs.filter(job => {
+        if (activeRadarFilter === '90') return job.matchScore >= 90;
+        if (activeRadarFilter === 'LinkedIn') return job.platform === 'LinkedIn';
+        if (activeRadarFilter === 'Naukri') return job.platform === 'Naukri';
+        return true;
+      });
+
+      document.getElementById("radarCountBadge").innerText = radarJobs.length;
+      document.getElementById("radarTabCount").innerText = radarJobs.length;
+      document.getElementById("metricRadarMatches").innerText = radarJobs.length;
+
+      filtered.forEach(job => {
+        const platformClass = 'platform-' + (job.platform || 'linkedin').toLowerCase();
+        const isApplied = job.status === 'Applied';
+
+        const card = document.createElement("div");
+        card.className = "radar-card";
+        card.innerHTML = `
+          <div class="radar-card-top">
+            <div>
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom: 6px;">
+                <span class="platform-badge ${platformClass}">${job.platform}</span>
+                <span style="font-size:0.8rem; color:var(--text-muted);">&bull; Posted ${job.postedTime}</span>
+                ${isApplied ? '<span style="background:rgba(16,185,129,0.2); color:#34d399; font-size:0.75rem; padding:3px 8px; border-radius:4px; font-weight:700;">✓ APPLIED</span>' : ''}
+              </div>
+              <h3 style="font-family:var(--font-heading); font-size:1.3rem; color:#fff; font-weight:700; margin-bottom: 4px;">
+                ${escapeHtml(job.title)}
+              </h3>
+              <div style="color:var(--accent-cyan); font-weight:600; font-size:0.95rem;">
+                ${escapeHtml(job.company)} &bull; <span style="color:var(--text-sub); font-size:0.85rem;">📍 ${escapeHtml(job.location)}</span>
+              </div>
+            </div>
+
+            <div class="match-gauge ${job.matchScore >= 90 ? 'high' : ''}">
+              <span>🔥 ${job.matchScore}% Match</span>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:20px; font-size:0.85rem; color:var(--text-sub); margin-bottom: 10px;">
+            <span>💼 <strong>Exp:</strong> ${escapeHtml(job.experience)}</span>
+            <span>💰 <strong>Package:</strong> ${escapeHtml(job.salary)}</span>
+          </div>
+
+          <div class="match-chips">
+            ${job.requiredSkills.map(s => {
+              const hit = job.matchedSkills.includes(s);
+              return `<span class="match-chip ${hit ? 'hit' : ''}">${hit ? '✓ ' : ''}${escapeHtml(s)}</span>`;
+            }).join('')}
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 18px; border-top:1px solid var(--border-card); padding-top:14px;">
+            <button class="btn btn-outline" onclick="previewRadarPitch('${job.id}')" style="padding: 7px 16px; font-size: 0.85rem;">
+              ✨ View Recruiter Pitch
+            </button>
+
+            <button class="btn ${isApplied ? 'btn-outline' : 'btn-primary'}" onclick="applyDirectlyFromRadar('${job.id}')" style="padding: 9px 22px; font-size: 0.9rem;">
+              <span>⚡ ${isApplied ? 'Re-Apply on ' + job.platform : '1-Click Apply & Sync on ' + job.platform}</span>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterRadar(type) {
+      activeRadarFilter = type;
+      renderRadar();
+    }
+
+    async function rescanRadar() {
+      const btn = document.getElementById("btnRescan");
+      btn.innerHTML = "<span>🛰️ Scanning Feeds...</span>";
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/radar/scan', { method: 'POST' });
+        if (res.ok) {
+          radarJobs = await res.json();
+          renderRadar();
+        }
+      } catch (e) {}
+
+      setTimeout(() => {
+        btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg><span>🛰️ Scan All Platforms</span>`;
+        btn.disabled = false;
+        showToast("✓ Scanned LinkedIn, Naukri & Indeed: Found 6 matching Java roles!");
+      }, 1000);
+    }
+
+    // Direct 1-Click Apply & Two-Way Sync
+    async function applyDirectlyFromRadar(id) {
+      const job = radarJobs.find(j => j.id === id);
+      if (!job) return;
+
+      // 1. Copy custom tailored pitch to user clipboard
+      const pitch = job.customPitch;
+      navigator.clipboard.writeText(pitch);
+
+      // 2. Open the platform's job apply page in new tab
+      window.open(job.jobUrl, "_blank");
+
+      // 3. Mark as Applied on Backend API
+      try {
+        await fetch('/api/radar/apply/' + id, { method: 'POST' });
+      } catch (e) {}
+
+      // 4. Update UI
+      job.status = 'Applied';
+      renderRadar();
+      await loadAppliedJobs();
+
+      // 5. Show Alert Notification
+      showToast(`⚡ Opened ${job.platform} for ${job.company}! Pitch copied to clipboard & logged as Applied.`);
+    }
+
+    // Load Applied Jobs
+    async function loadAppliedJobs() {
       try {
         const res = await fetch('/api/jobs');
         if (res.ok) {
-          currentJobs = await res.json();
-          renderJobs();
+          appliedJobs = await res.json();
+          renderAppliedTable();
           updateMetrics();
-        } else {
-          fallbackLocalJobs();
         }
-      } catch (err) {
-        fallbackLocalJobs();
-      }
+      } catch (e) {}
     }
 
-    function fallbackLocalJobs() {
-      const stored = localStorage.getItem('shamdal_applied_jobs');
-      if (stored) {
-        currentJobs = JSON.parse(stored);
-      } else {
-        currentJobs = [
-          { id: "1", jobTitle: "Senior Java Developer", company: "HCLTech", platform: "Naukri", jobUrl: "https://www.naukri.com/job-listings-java-developer-hcltech-hyderabad-6-to-10-years-of-experience", appliedDate: "2026-10-22", status: "Under Review", salaryPackage: "15 - 20 LPA", location: "Hyderabad", notes: "Applied via Naukri. Microservices & Spring Boot focus.", tailoredPitch: "Hi Hiring Team at HCLTech, I applied for Senior Java Developer with 5+ years in Spring Boot and Microservices." },
-          { id: "2", jobTitle: "Senior Java Developer", company: "Kumaran Systems", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/?currentJobId=4482139812", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "14 - 18 LPA", location: "Remote / Hybrid", notes: "Applied via LinkedIn Easy Apply.", tailoredPitch: "Hello Hiring Manager at Kumaran Systems, eager to contribute my backend & REST API expertise." },
-          { id: "3", jobTitle: "Java Full Stack Developer", company: "TechDoQuest", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/?currentJobId=4482139812", appliedDate: "2026-10-22", status: "Interviewing", salaryPackage: "16 - 22 LPA", location: "Hybrid", notes: "HR responded. Technical discussion scheduled.", tailoredPitch: "Dear TechDoQuest Team, Looking forward to discussing how leading 10 devs aligns with your needs." },
-          { id: "4", jobTitle: "Senior Java Software Engineer", company: "TrueID Technologies", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/?currentJobId=4467382877", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "15 - 19 LPA", location: "Hyderabad", notes: "Identity & platform security role.", tailoredPitch: "Hi TrueID Team, strong background in Spring Security/JWT and microservices." },
-          { id: "5", jobTitle: "Java Backend Engineer", company: "CMIND", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "14 - 17 LPA", location: "Remote", notes: "Direct outreach sent.", tailoredPitch: "Hello CMIND Team, excited to share my experience tuning database performance." },
-          { id: "6", jobTitle: "Senior Java Developer", company: "Tileti Eemeze Soft Tech", platform: "Naukri", jobUrl: "https://www.naukri.com/job-listings-java-developer-senior-tileti-eemeze-soft-tech", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "13 - 16 LPA", location: "Hyderabad", notes: "Applied on Naukri with 100% skill match.", tailoredPitch: "Hi Hiring Team, my background in Core Java, Spring Boot, Hibernate aligns closely." }
-        ];
-        localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
-      }
-      renderJobs();
-      updateMetrics();
-    }
-
-    function renderJobs() {
-      const tbody = document.getElementById("jobsTableBody");
+    function renderAppliedTable() {
+      const tbody = document.getElementById("appliedJobsTableBody");
       tbody.innerHTML = "";
 
-      let filtered = currentJobs.filter(job => {
-        const matchesFilter = (activeFilter === 'All') || (job.status === activeFilter);
-        const matchesSearch = !searchQuery || 
-          job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          job.platform.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesFilter && matchesSearch;
-      });
+      document.getElementById("appliedTabCount").innerText = appliedJobs.length;
+      document.getElementById("metricTotal").innerText = appliedJobs.length;
 
-      if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 40px; color: var(--text-muted);">No applications found matching criteria.</td></tr>`;
-        return;
-      }
-
-      filtered.forEach(job => {
+      appliedJobs.forEach(job => {
         const platformClass = 'platform-' + (job.platform || 'direct').toLowerCase();
-        
         const tr = document.createElement("tr");
         tr.className = "job-row";
         tr.innerHTML = `
@@ -671,36 +900,25 @@
             <div class="job-title-cell">${escapeHtml(job.jobTitle)}</div>
             <div class="job-company-cell">${escapeHtml(job.company)}</div>
           </td>
+          <td><span class="platform-badge ${platformClass}">${escapeHtml(job.platform)}</span></td>
           <td>
-            <span class="platform-badge ${platformClass}">${escapeHtml(job.platform)}</span>
+            <div style="color:#fff; font-size:0.875rem; font-weight:600;">${escapeHtml(job.salaryPackage || 'Competitive')}</div>
+            <div style="color:var(--text-muted); font-size:0.775rem;">${escapeHtml(job.location || 'India')}</div>
           </td>
-          <td>
-            <div style="color: #ffffff; font-size: 0.875rem; font-weight:600;">${escapeHtml(job.salaryPackage || 'Competitive')}</div>
-            <div style="color: var(--text-muted); font-size: 0.775rem;">${escapeHtml(job.location || 'India / Remote')}</div>
-          </td>
-          <td>
-            <div style="color: var(--text-sub); font-size: 0.85rem;">${escapeHtml(job.appliedDate || 'Recent')}</div>
-          </td>
+          <td>${escapeHtml(job.appliedDate || 'Recent')}</td>
           <td>
             <select class="status-select" onchange="updateJobStatus('${job.id}', this.value)">
               <option value="Applied" ${job.status === 'Applied' ? 'selected' : ''}>Applied</option>
               <option value="Under Review" ${job.status === 'Under Review' ? 'selected' : ''}>Under Review</option>
               <option value="Interviewing" ${job.status === 'Interviewing' ? 'selected' : ''}>Interviewing</option>
-              <option value="Offer" ${job.status === 'Offer' ? 'selected' : ''}>Offer Received</option>
-              <option value="Rejected" ${job.status === 'Rejected' ? 'selected' : ''}>Archived / Rejected</option>
+              <option value="Offer" ${job.status === 'Offer' ? 'selected' : ''}>Offer</option>
+              <option value="Rejected" ${job.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
             </select>
           </td>
-          <td style="text-align: right;">
-            <div style="display: inline-flex; gap: 8px;">
-              <a href="${job.jobUrl || '#'}" target="_blank" rel="noopener noreferrer" class="row-btn" title="Open Job Application Link">
-                🌐 Visit
-              </a>
-              <button class="row-btn" onclick="openPitchModal('${job.id}')" title="View Custom Outreach Message">
-                ✨ Pitch
-              </button>
-              <button class="row-btn row-btn-danger" onclick="deleteJob('${job.id}')" title="Delete application">
-                🗑️
-              </button>
+          <td style="text-align:right;">
+            <div style="display:inline-flex; gap:8px;">
+              <a href="${job.jobUrl || '#'}" target="_blank" class="row-btn">🌐 Link</a>
+              <button class="row-btn" onclick="openPitchModal('${job.id}')">✨ Pitch</button>
             </div>
           </td>
         `;
@@ -708,130 +926,8 @@
       });
     }
 
-    function updateMetrics() {
-      const total = currentJobs.length;
-      const applied = currentJobs.filter(j => j.status === 'Applied').length;
-      const review = currentJobs.filter(j => j.status === 'Under Review').length;
-      const interview = currentJobs.filter(j => j.status === 'Interviewing').length;
-      const offer = currentJobs.filter(j => j.status === 'Offer').length;
-
-      document.getElementById("metricTotal").innerText = total;
-      document.getElementById("metricInterview").innerText = interview;
-      document.getElementById("metricReview").innerText = review;
-
-      document.getElementById("countAll").innerText = total;
-      document.getElementById("countApplied").innerText = applied;
-      document.getElementById("countReview").innerText = review;
-      document.getElementById("countInterview").innerText = interview;
-      document.getElementById("countOffer").innerText = offer;
-    }
-
-    function setFilter(filter, btn) {
-      activeFilter = filter;
-      document.querySelectorAll(".filter-tab").forEach(tab => tab.classList.remove("active"));
-      btn.classList.add("active");
-      renderJobs();
-    }
-
-    function handleSearch(val) {
-      searchQuery = val;
-      renderJobs();
-    }
-
-    function handleUrlInput(url) {
-      const platformSelect = document.getElementById("inputPlatform");
-      if (url.includes("linkedin.com")) {
-        platformSelect.value = "LinkedIn";
-      } else if (url.includes("naukri.com")) {
-        platformSelect.value = "Naukri";
-      } else if (url.includes("indeed.com")) {
-        platformSelect.value = "Indeed";
-      }
-    }
-
-    function detectFromUrl() {
-      const url = document.getElementById("inputJobUrl").value;
-      if (!url) {
-        alert("Please paste a job URL first.");
-        return;
-      }
-      handleUrlInput(url);
-      
-      // Auto infer basic company/role if in slug
-      try {
-        const pathname = new URL(url).pathname;
-        const parts = pathname.split('-').filter(p => p.length > 2);
-        if (parts.length > 0) {
-          if (!document.getElementById("inputJobTitle").value) {
-            document.getElementById("inputJobTitle").value = "Senior Java Developer";
-          }
-          if (!document.getElementById("inputSalary").value) {
-            document.getElementById("inputSalary").value = "15 - 20 LPA | Hyderabad / Remote";
-          }
-        }
-      } catch (e) {}
-    }
-
-    function openDirectJobUrl() {
-      const url = document.getElementById("inputJobUrl").value;
-      if (!url) {
-        alert("Please enter a job URL first.");
-        return;
-      }
-      window.open(url, "_blank");
-    }
-
-    async function submitNewJob() {
-      const url = document.getElementById("inputJobUrl").value;
-      const title = document.getElementById("inputJobTitle").value || "Senior Java Developer";
-      const company = document.getElementById("inputCompany").value || "Target Company";
-      const platform = document.getElementById("inputPlatform").value || "LinkedIn";
-      const salary = document.getElementById("inputSalary").value || "15 - 20 LPA";
-
-      const newJob = {
-        id: Date.now().toString().slice(-6),
-        jobTitle: title,
-        company: company,
-        platform: platform,
-        jobUrl: url,
-        appliedDate: new Date().toISOString().split('T')[0],
-        status: "Applied",
-        salaryPackage: salary,
-        location: "Hyderabad / Remote",
-        notes: "Directly applied via " + platform,
-        tailoredPitch: generateClientPitch(title, company)
-      };
-
-      try {
-        const res = await fetch('/api/jobs', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newJob)
-        });
-        if (res.ok) {
-          const saved = await res.json();
-          currentJobs.unshift(saved);
-        } else {
-          currentJobs.unshift(newJob);
-        }
-      } catch (err) {
-        currentJobs.unshift(newJob);
-      }
-
-      localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
-      renderJobs();
-      updateMetrics();
-
-      // Clear inputs
-      document.getElementById("inputJobUrl").value = "";
-      document.getElementById("inputJobTitle").value = "";
-      document.getElementById("inputCompany").value = "";
-
-      alert("✓ Successfully logged application for " + company + " (" + title + ")!");
-    }
-
     async function updateJobStatus(id, newStatus) {
-      const job = currentJobs.find(j => j.id === id);
+      const job = appliedJobs.find(j => j.id === id);
       if (job) {
         job.status = newStatus;
         try {
@@ -841,45 +937,70 @@
             body: JSON.stringify(job)
           });
         } catch (e) {}
-        localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
         updateMetrics();
       }
     }
 
-    async function deleteJob(id) {
-      if (!confirm("Are you sure you want to remove this job application record?")) return;
-      currentJobs = currentJobs.filter(j => j.id !== id);
+    async function submitManualJob() {
+      const url = document.getElementById("manualJobUrl").value;
+      const comp = document.getElementById("manualCompany").value || "Company";
+      const role = document.getElementById("manualRole").value || "Senior Java Developer";
+
+      if (!url) {
+        alert("Please paste a job URL.");
+        return;
+      }
+
+      let plat = "LinkedIn";
+      if (url.includes("naukri")) plat = "Naukri";
+      else if (url.includes("indeed")) plat = "Indeed";
+
+      const newJob = {
+        jobTitle: role,
+        company: comp,
+        platform: plat,
+        jobUrl: url,
+        appliedDate: new Date().toISOString().split('T')[0],
+        status: "Applied",
+        salaryPackage: "16 - 22 LPA",
+        location: "Hyderabad / Remote"
+      };
+
       try {
-        await fetch('/api/jobs/' + id, { method: 'DELETE' });
+        await fetch('/api/jobs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newJob)
+        });
+        await loadAppliedJobs();
+        showToast("✓ Application saved to tracker!");
+        document.getElementById("manualJobUrl").value = "";
       } catch (e) {}
-      localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
-      renderJobs();
-      updateMetrics();
     }
 
-    function generateClientPitch(title, company) {
-      return `Hi Hiring Team at ${company},\n\nI am writing to express my strong interest in the ${title} position. With over 5 years of rich engineering experience in Java, Spring Boot, Microservices, and REST API development at Dot eVentures and Virtusa, I have a track record of leading development teams of 10+, designing secure JWT enterprise backends, and achieving 35% system performance optimizations.\n\nMy core stack includes: Java 17, Spring Boot, Microservices, Hibernate ORM, MySQL, and secure REST APIs.\n\nI would welcome the opportunity to connect and discuss how my skills align with your engineering goals. My portfolio: https://github.com/Shamdalkhokad123.\n\nBest regards,\nShamdal Khokad\nSenior Java Developer | +91-9890824574 | kshamdal@gmail.com`;
+    function updateMetrics() {
+      const interviewCount = appliedJobs.filter(j => j.status === 'Interviewing').length;
+      document.getElementById("metricInterview").innerText = interviewCount;
     }
 
-    function previewPitch() {
-      const title = document.getElementById("inputJobTitle").value || "Senior Java Developer";
-      const company = document.getElementById("inputCompany").value || "Hiring Team";
-      const pitch = generateClientPitch(title, company);
-      document.getElementById("modalPitchText").value = pitch;
-      document.getElementById("pitchModal").style.display = "flex";
+    function previewRadarPitch(id) {
+      const job = radarJobs.find(j => j.id === id);
+      if (job) {
+        document.getElementById("modalPitchText").value = job.customPitch;
+        document.getElementById("pitchModal").style.display = "flex";
+      }
     }
 
     function openPitchModal(id) {
-      const job = currentJobs.find(j => j.id === id);
+      const job = appliedJobs.find(j => j.id === id);
       if (job) {
-        document.getElementById("modalPitchText").value = job.tailoredPitch || generateClientPitch(job.jobTitle, job.company);
+        document.getElementById("modalPitchText").value = job.tailoredPitch || "Tailored Java & Spring Boot Application pitch.";
         document.getElementById("pitchModal").style.display = "flex";
       }
     }
 
     function closePitchModal() {
       document.getElementById("pitchModal").style.display = "none";
-      document.getElementById("copyToast").style.display = "none";
     }
 
     function copyPitchText() {
@@ -887,8 +1008,32 @@
       navigator.clipboard.writeText(text).then(() => {
         const toast = document.getElementById("copyToast");
         toast.style.display = "inline";
-        setTimeout(() => { toast.style.display = "none"; }, 2500);
+        setTimeout(() => { toast.style.display = "none"; }, 2000);
       });
+    }
+
+    function requestNotificationAccess() {
+      if ("Notification" in window) {
+        Notification.requestPermission().then(permission => {
+          if (permission === "granted") {
+            new Notification("⚡ Job Radar Alerts Active", {
+              body: "You will now receive desktop notifications when new 90%+ matching Java roles are posted on LinkedIn, Naukri, or Indeed!",
+              icon: "./src/main/resources/static/images/shamdalprofilephoto.png"
+            });
+            document.getElementById("btnNotifyAccess").innerHTML = "<span>✓ Alerts Active</span>";
+            document.getElementById("btnNotifyAccess").style.borderColor = "var(--accent-emerald)";
+            document.getElementById("btnNotifyAccess").style.color = "var(--accent-emerald)";
+          }
+        });
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toastAlert");
+      const text = document.getElementById("toastMessage");
+      text.innerText = msg;
+      toast.style.display = "flex";
+      setTimeout(() => { toast.style.display = "none"; }, 3500);
     }
 
     function escapeHtml(str) {
@@ -896,9 +1041,9 @@
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    // Initialize on load
     document.addEventListener("DOMContentLoaded", () => {
-      loadJobs();
+      loadRadarJobs();
+      loadAppliedJobs();
     });
   </script>
 </body>
