@@ -128,6 +128,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   z-index: 1000;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   transition: var(--tr-smooth);
@@ -143,6 +144,8 @@ body {
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.02em;
+  flex-shrink: 0;
+  margin-right: 16px;
 }
 
 .nav-logo-badge {
@@ -162,8 +165,29 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 18px;
   list-style: none;
+}
+
+.nav-agent-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(6, 182, 212, 0.25));
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  color: #ffffff !important;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--tr-smooth);
+}
+
+.nav-agent-btn:hover {
+  background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+  box-shadow: 0 4px 15px var(--accent-cyan-glow);
+  transform: translateY(-2px);
 }
 
 .nav-links a {

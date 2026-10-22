@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application Agent &amp; Tracker | Shamdal Khokad</title>
+  <meta name="description" content="AI Job Application Agent and Management Center for tracking and applying directly to LinkedIn, Naukri, and Indeed jobs.">
+  <link rel="icon" type="image/png" th:href="@{/images/shamdalprofilephoto.png}" href="./src/main/resources/static/images/shamdalprofilephoto.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" th:href="@{/css/welcomeCustom.css}" href="./src/main/resources/static/css/welcomeCustom.css">
+
+  <style>
+    /* Specific Job Agent Dashboard Styles */
+    .dashboard-header {
+      padding: 100px 0 30px 0;
+      border-bottom: 1px solid var(--border-card);
+      background: rgba(15, 23, 42, 0.5);
+    }
+    .dash-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      transition: var(--tr-smooth);
+    }
+    .dash-nav-back:hover {
+      color: var(--accent-cyan);
+      transform: translateX(-3px);
+    }
+    .dash-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .agent-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    /* Metrics Row */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 30px 0 40px 0;
+    }
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--tr-smooth);
+    }
+    .metric-card:hover {
+      border-color: var(--border-card-hover);
+      transform: translateY(-3px);
+    }
+    .metric-card-title {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .metric-card-num {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .metric-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+    }
+
+    /* Action Panel: Smart Apply & Logger */
+    .apply-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+    }
+    .apply-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.775rem;
+      font-weight: 700;
+    }
+    .platform-linkedin {
+      background: rgba(10, 102, 194, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(10, 102, 194, 0.4);
+    }
+    .platform-naukri {
+      background: rgba(6, 182, 212, 0.2);
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.4);
+    }
+    .platform-indeed {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+    }
+    .platform-direct {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .status-applied {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .status-review {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .status-interview {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .status-offer {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+    .status-rejected {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* Filter Controls */
+    .board-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .filter-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-card);
+      color: var(--text-sub);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--tr-smooth);
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .search-input {
+      padding: 9px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 0.875rem;
+      min-width: 260px;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Jobs Table & Cards */
+    .jobs-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+    }
+    .jobs-table th {
+      padding: 12px 18px;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .job-row {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      transition: var(--tr-smooth);
+    }
+    .job-row td {
+      padding: 18px;
+      border-top: 1px solid var(--border-card);
+      border-bottom: 1px solid var(--border-card);
+    }
+    .job-row td:first-child {
+      border-left: 1px solid var(--border-card);
+      border-top-left-radius: 14px;
+      border-bottom-left-radius: 14px;
+    }
+    .job-row td:last-child {
+      border-right: 1px solid var(--border-card);
+      border-top-right-radius: 14px;
+      border-bottom-right-radius: 14px;
+    }
+    .job-row:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+    .job-title-cell {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #ffffff;
+    }
+    .job-company-cell {
+      color: var(--accent-cyan);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .status-select {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-card);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .status-select:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+    }
+    .row-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-card);
+      color: var(--text-sub);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--tr-smooth);
+    }
+    .row-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .row-btn-danger:hover {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: white;
+    }
+
+    /* Modal Pitch Box */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-box {
+      background: #0f172a;
+      border: 1px solid var(--border-card-hover);
+      border-radius: 20px;
+      max-width: 650px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-close:hover {
+      color: #ffffff;
+    }
+    .pitch-textarea {
+      width: 100%;
+      min-height: 180px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      color: #ffffff;
+      padding: 14px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      resize: vertical;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 900px) {
+      .apply-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .jobs-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Dashboard Top Navbar -->
+  <div class="dashboard-header">
+    <div class="container">
+      <a href="/" th:href="@{/}" class="dash-nav-back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back to Developer Portfolio</span>
+      </a>
+
+      <div class="dash-title-row">
+        <div>
+          <div style="display:flex; align-items:center; gap: 12px; margin-bottom: 8px;">
+            <h1 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #fff;">
+              Job Application <span class="gradient-text">Command Center &amp; Agent</span>
+            </h1>
+            <span class="agent-pill">⚡ Active AI Agent</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Directly apply, manage recruitment workflows, and generate tailored recruiter pitches for LinkedIn, Naukri, and Indeed.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <a href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer" class="row-btn platform-linkedin" style="padding: 10px 16px;">
+            <span>💼 Open LinkedIn Jobs</span>
+          </a>
+          <a href="https://www.naukri.com/mnjuser/recommendedjobs" target="_blank" rel="noopener noreferrer" class="row-btn platform-naukri" style="padding: 10px 16px;">
+            <span>🚀 Open Naukri Jobs</span>
+          </a>
+          <a href="https://in.indeed.com/" target="_blank" rel="noopener noreferrer" class="row-btn platform-indeed" style="padding: 10px 16px;">
+            <span>🌐 Open Indeed</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top: 20px; padding-bottom: 80px;">
+
+    <!-- Top Metrics Overview -->
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-accent" style="background: var(--primary);"></div>
+        <div class="metric-card-title">Total Applications</div>
+        <div class="metric-card-num" id="metricTotal">6</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Across LinkedIn, Naukri &amp; Indeed</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-accent" style="background: var(--accent-emerald);"></div>
+        <div class="metric-card-title">Active Interviews</div>
+        <div class="metric-card-num" id="metricInterview" style="color: #34d399;">1</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Tech discussions scheduled</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-accent" style="background: #fbbf24;"></div>
+        <div class="metric-card-title">Under Review</div>
+        <div class="metric-card-num" id="metricReview" style="color: #fbbf24;">1</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Profile viewed by recruiters</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-accent" style="background: var(--accent-cyan);"></div>
+        <div class="metric-card-title">Candidate Profile</div>
+        <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight:700; color:#fff;">Shamdal Khokad</div>
+        <div style="font-size: 0.8rem; color: var(--accent-cyan); margin-top: 6px;">5+ Yrs &bull; Senior Java Dev</div>
+      </div>
+    </div>
+
+    <!-- Smart 1-Click Apply & Job Logger Card -->
+    <div class="apply-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff;">
+          ⚡ Quick Job Applicator &amp; AI Pitch Generator
+        </h2>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">Paste any job URL to auto-detect and generate custom recruiter outreach</span>
+      </div>
+
+      <div class="apply-grid">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <!-- Job URL Input -->
+          <div class="form-group">
+            <label for="inputJobUrl" style="color: var(--text-sub); font-size: 0.85rem; font-weight: 600;">
+              Job Link (from LinkedIn, Naukri, or Indeed)
+            </label>
+            <div style="display: flex; gap: 10px;">
+              <input type="url" id="inputJobUrl" class="form-control" placeholder="https://www.linkedin.com/jobs/view/... or https://www.naukri.com/..." oninput="handleUrlInput(this.value)">
+              <button type="button" class="btn btn-outline" onclick="detectFromUrl()" style="white-space: nowrap; padding: 0 16px;">
+                ⚡ Auto-Detect
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="inputJobTitle">Job Title / Role</label>
+              <input type="text" id="inputJobTitle" class="form-control" placeholder="e.g. Senior Java Developer">
+            </div>
+            <div class="form-group">
+              <label for="inputCompany">Company Name</label>
+              <input type="text" id="inputCompany" class="form-control" placeholder="e.g. Accenture, Infosys, Startup">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="inputPlatform">Platform</label>
+              <select id="inputPlatform" class="form-control" style="cursor: pointer;">
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Naukri">Naukri</option>
+                <option value="Indeed">Indeed</option>
+                <option value="Direct">Company Career Portal</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputSalary">Package / CTC &amp; Location</label>
+              <input type="text" id="inputSalary" class="form-control" placeholder="e.g. 16 - 20 LPA | Hyderabad/Remote">
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Box -->
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: #fff; margin-bottom: 8px;">
+              Direct Actions
+            </div>
+            <p style="font-size: 0.825rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+              The agent will generate a customized pitch based on your 5+ years Java, Spring Boot &amp; Microservices background and open the application page.
+            </p>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button type="button" class="btn btn-outline" onclick="openDirectJobUrl()" style="width: 100%;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span>1. Open Job Page</span>
+            </button>
+            <button type="button" class="btn btn-outline" onclick="previewPitch()" style="width: 100%;">
+              <span>✨ 2. Preview &amp; Copy AI Pitch</span>
+            </button>
+            <button type="button" class="btn btn-primary" onclick="submitNewJob()" style="width: 100%;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              <span>3. Save as Applied</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Applications Management Board -->
+    <div>
+      <div class="board-controls">
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="setFilter('All', this)">All Applications (<span id="countAll">6</span>)</button>
+          <button class="filter-tab" onclick="setFilter('Applied', this)">Applied (<span id="countApplied">4</span>)</button>
+          <button class="filter-tab" onclick="setFilter('Under Review', this)">Under Review (<span id="countReview">1</span>)</button>
+          <button class="filter-tab" onclick="setFilter('Interviewing', this)">Interviewing (<span id="countInterview">1</span>)</button>
+          <button class="filter-tab" onclick="setFilter('Offer', this)">Offers (<span id="countOffer">0</span>)</button>
+        </div>
+
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search company, role, skills..." oninput="handleSearch(this.value)">
+      </div>
+
+      <!-- Jobs Table -->
+      <table class="jobs-table">
+        <thead>
+          <tr>
+            <th>Company &amp; Role</th>
+            <th>Platform</th>
+            <th>Location &amp; Package</th>
+            <th>Applied Date</th>
+            <th>Status Stage</th>
+            <th style="text-align: right;">Quick Actions</th>
+          </tr>
+        </thead>
+        <tbody id="jobsTableBody">
+          <!-- Populated dynamically via JS -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- AI Pitch Modal -->
+  <div class="modal-overlay" id="pitchModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closePitchModal()">&times;</button>
+      <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: #fff; margin-bottom: 6px;">
+        ✨ Tailored Recruiter Message / InMail Pitch
+      </h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        Crafted specifically for Shamdal Khokad highlighting 5+ years Java, Spring Boot, Microservices, and system scalability.
+      </p>
+
+      <textarea id="modalPitchText" class="pitch-textarea" readonly></textarea>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span id="copyToast" style="color: var(--accent-emerald); font-size: 0.85rem; display: none;">✓ Copied to clipboard!</span>
+        <div style="display: flex; gap: 10px; margin-left: auto;">
+          <button class="btn btn-outline" onclick="copyPitchText()">
+            📋 Copy Pitch
+          </button>
+          <button class="btn btn-primary" onclick="closePitchModal()">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State management
+    let currentJobs = [];
+    let activeFilter = 'All';
+    let searchQuery = '';
+
+    // Initial load
+    async function loadJobs() {
+      try {
+        const res = await fetch('/api/jobs');
+        if (res.ok) {
+          currentJobs = await res.json();
+          renderJobs();
+          updateMetrics();
+        } else {
+          fallbackLocalJobs();
+        }
+      } catch (err) {
+        fallbackLocalJobs();
+      }
+    }
+
+    function fallbackLocalJobs() {
+      const stored = localStorage.getItem('shamdal_applied_jobs');
+      if (stored) {
+        currentJobs = JSON.parse(stored);
+      } else {
+        currentJobs = [
+          { id: "1", jobTitle: "Senior Java Developer", company: "HCLTech", platform: "Naukri", jobUrl: "https://www.naukri.com/job-listings-java-developer-hcltech-hyderabad-6-to-10-years-of-experience", appliedDate: "2026-10-22", status: "Under Review", salaryPackage: "15 - 20 LPA", location: "Hyderabad", notes: "Applied via Naukri. Microservices & Spring Boot focus.", tailoredPitch: "Hi Hiring Team at HCLTech, I applied for Senior Java Developer with 5+ years in Spring Boot and Microservices." },
+          { id: "2", jobTitle: "Senior Java Developer", company: "Kumaran Systems", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/?currentJobId=4482139812", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "14 - 18 LPA", location: "Remote / Hybrid", notes: "Applied via LinkedIn Easy Apply.", tailoredPitch: "Hello Hiring Manager at Kumaran Systems, eager to contribute my backend & REST API expertise." },
+          { id: "3", jobTitle: "Java Full Stack Developer", company: "TechDoQuest", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/?currentJobId=4482139812", appliedDate: "2026-10-22", status: "Interviewing", salaryPackage: "16 - 22 LPA", location: "Hybrid", notes: "HR responded. Technical discussion scheduled.", tailoredPitch: "Dear TechDoQuest Team, Looking forward to discussing how leading 10 devs aligns with your needs." },
+          { id: "4", jobTitle: "Senior Java Software Engineer", company: "TrueID Technologies", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/?currentJobId=4467382877", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "15 - 19 LPA", location: "Hyderabad", notes: "Identity & platform security role.", tailoredPitch: "Hi TrueID Team, strong background in Spring Security/JWT and microservices." },
+          { id: "5", jobTitle: "Java Backend Engineer", company: "CMIND", platform: "LinkedIn", jobUrl: "https://www.linkedin.com/jobs/search/", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "14 - 17 LPA", location: "Remote", notes: "Direct outreach sent.", tailoredPitch: "Hello CMIND Team, excited to share my experience tuning database performance." },
+          { id: "6", jobTitle: "Senior Java Developer", company: "Tileti Eemeze Soft Tech", platform: "Naukri", jobUrl: "https://www.naukri.com/job-listings-java-developer-senior-tileti-eemeze-soft-tech", appliedDate: "2026-10-22", status: "Applied", salaryPackage: "13 - 16 LPA", location: "Hyderabad", notes: "Applied on Naukri with 100% skill match.", tailoredPitch: "Hi Hiring Team, my background in Core Java, Spring Boot, Hibernate aligns closely." }
+        ];
+        localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
+      }
+      renderJobs();
+      updateMetrics();
+    }
+
+    function renderJobs() {
+      const tbody = document.getElementById("jobsTableBody");
+      tbody.innerHTML = "";
+
+      let filtered = currentJobs.filter(job => {
+        const matchesFilter = (activeFilter === 'All') || (job.status === activeFilter);
+        const matchesSearch = !searchQuery || 
+          job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          job.platform.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 40px; color: var(--text-muted);">No applications found matching criteria.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(job => {
+        const platformClass = 'platform-' + (job.platform || 'direct').toLowerCase();
+        
+        const tr = document.createElement("tr");
+        tr.className = "job-row";
+        tr.innerHTML = `
+          <td>
+            <div class="job-title-cell">${escapeHtml(job.jobTitle)}</div>
+            <div class="job-company-cell">${escapeHtml(job.company)}</div>
+          </td>
+          <td>
+            <span class="platform-badge ${platformClass}">${escapeHtml(job.platform)}</span>
+          </td>
+          <td>
+            <div style="color: #ffffff; font-size: 0.875rem; font-weight:600;">${escapeHtml(job.salaryPackage || 'Competitive')}</div>
+            <div style="color: var(--text-muted); font-size: 0.775rem;">${escapeHtml(job.location || 'India / Remote')}</div>
+          </td>
+          <td>
+            <div style="color: var(--text-sub); font-size: 0.85rem;">${escapeHtml(job.appliedDate || 'Recent')}</div>
+          </td>
+          <td>
+            <select class="status-select" onchange="updateJobStatus('${job.id}', this.value)">
+              <option value="Applied" ${job.status === 'Applied' ? 'selected' : ''}>Applied</option>
+              <option value="Under Review" ${job.status === 'Under Review' ? 'selected' : ''}>Under Review</option>
+              <option value="Interviewing" ${job.status === 'Interviewing' ? 'selected' : ''}>Interviewing</option>
+              <option value="Offer" ${job.status === 'Offer' ? 'selected' : ''}>Offer Received</option>
+              <option value="Rejected" ${job.status === 'Rejected' ? 'selected' : ''}>Archived / Rejected</option>
+            </select>
+          </td>
+          <td style="text-align: right;">
+            <div style="display: inline-flex; gap: 8px;">
+              <a href="${job.jobUrl || '#'}" target="_blank" rel="noopener noreferrer" class="row-btn" title="Open Job Application Link">
+                🌐 Visit
+              </a>
+              <button class="row-btn" onclick="openPitchModal('${job.id}')" title="View Custom Outreach Message">
+                ✨ Pitch
+              </button>
+              <button class="row-btn row-btn-danger" onclick="deleteJob('${job.id}')" title="Delete application">
+                🗑️
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateMetrics() {
+      const total = currentJobs.length;
+      const applied = currentJobs.filter(j => j.status === 'Applied').length;
+      const review = currentJobs.filter(j => j.status === 'Under Review').length;
+      const interview = currentJobs.filter(j => j.status === 'Interviewing').length;
+      const offer = currentJobs.filter(j => j.status === 'Offer').length;
+
+      document.getElementById("metricTotal").innerText = total;
+      document.getElementById("metricInterview").innerText = interview;
+      document.getElementById("metricReview").innerText = review;
+
+      document.getElementById("countAll").innerText = total;
+      document.getElementById("countApplied").innerText = applied;
+      document.getElementById("countReview").innerText = review;
+      document.getElementById("countInterview").innerText = interview;
+      document.getElementById("countOffer").innerText = offer;
+    }
+
+    function setFilter(filter, btn) {
+      activeFilter = filter;
+      document.querySelectorAll(".filter-tab").forEach(tab => tab.classList.remove("active"));
+      btn.classList.add("active");
+      renderJobs();
+    }
+
+    function handleSearch(val) {
+      searchQuery = val;
+      renderJobs();
+    }
+
+    function handleUrlInput(url) {
+      const platformSelect = document.getElementById("inputPlatform");
+      if (url.includes("linkedin.com")) {
+        platformSelect.value = "LinkedIn";
+      } else if (url.includes("naukri.com")) {
+        platformSelect.value = "Naukri";
+      } else if (url.includes("indeed.com")) {
+        platformSelect.value = "Indeed";
+      }
+    }
+
+    function detectFromUrl() {
+      const url = document.getElementById("inputJobUrl").value;
+      if (!url) {
+        alert("Please paste a job URL first.");
+        return;
+      }
+      handleUrlInput(url);
+      
+      // Auto infer basic company/role if in slug
+      try {
+        const pathname = new URL(url).pathname;
+        const parts = pathname.split('-').filter(p => p.length > 2);
+        if (parts.length > 0) {
+          if (!document.getElementById("inputJobTitle").value) {
+            document.getElementById("inputJobTitle").value = "Senior Java Developer";
+          }
+          if (!document.getElementById("inputSalary").value) {
+            document.getElementById("inputSalary").value = "15 - 20 LPA | Hyderabad / Remote";
+          }
+        }
+      } catch (e) {}
+    }
+
+    function openDirectJobUrl() {
+      const url = document.getElementById("inputJobUrl").value;
+      if (!url) {
+        alert("Please enter a job URL first.");
+        return;
+      }
+      window.open(url, "_blank");
+    }
+
+    async function submitNewJob() {
+      const url = document.getElementById("inputJobUrl").value;
+      const title = document.getElementById("inputJobTitle").value || "Senior Java Developer";
+      const company = document.getElementById("inputCompany").value || "Target Company";
+      const platform = document.getElementById("inputPlatform").value || "LinkedIn";
+      const salary = document.getElementById("inputSalary").value || "15 - 20 LPA";
+
+      const newJob = {
+        id: Date.now().toString().slice(-6),
+        jobTitle: title,
+        company: company,
+        platform: platform,
+        jobUrl: url,
+        appliedDate: new Date().toISOString().split('T')[0],
+        status: "Applied",
+        salaryPackage: salary,
+        location: "Hyderabad / Remote",
+        notes: "Directly applied via " + platform,
+        tailoredPitch: generateClientPitch(title, company)
+      };
+
+      try {
+        const res = await fetch('/api/jobs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newJob)
+        });
+        if (res.ok) {
+          const saved = await res.json();
+          currentJobs.unshift(saved);
+        } else {
+          currentJobs.unshift(newJob);
+        }
+      } catch (err) {
+        currentJobs.unshift(newJob);
+      }
+
+      localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
+      renderJobs();
+      updateMetrics();
+
+      // Clear inputs
+      document.getElementById("inputJobUrl").value = "";
+      document.getElementById("inputJobTitle").value = "";
+      document.getElementById("inputCompany").value = "";
+
+      alert("✓ Successfully logged application for " + company + " (" + title + ")!");
+    }
+
+    async function updateJobStatus(id, newStatus) {
+      const job = currentJobs.find(j => j.id === id);
+      if (job) {
+        job.status = newStatus;
+        try {
+          await fetch('/api/jobs/' + id, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(job)
+          });
+        } catch (e) {}
+        localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
+        updateMetrics();
+      }
+    }
+
+    async function deleteJob(id) {
+      if (!confirm("Are you sure you want to remove this job application record?")) return;
+      currentJobs = currentJobs.filter(j => j.id !== id);
+      try {
+        await fetch('/api/jobs/' + id, { method: 'DELETE' });
+      } catch (e) {}
+      localStorage.setItem('shamdal_applied_jobs', JSON.stringify(currentJobs));
+      renderJobs();
+      updateMetrics();
+    }
+
+    function generateClientPitch(title, company) {
+      return `Hi Hiring Team at ${company},\n\nI am writing to express my strong interest in the ${title} position. With over 5 years of rich engineering experience in Java, Spring Boot, Microservices, and REST API development at Dot eVentures and Virtusa, I have a track record of leading development teams of 10+, designing secure JWT enterprise backends, and achieving 35% system performance optimizations.\n\nMy core stack includes: Java 17, Spring Boot, Microservices, Hibernate ORM, MySQL, and secure REST APIs.\n\nI would welcome the opportunity to connect and discuss how my skills align with your engineering goals. My portfolio: https://github.com/Shamdalkhokad123.\n\nBest regards,\nShamdal Khokad\nSenior Java Developer | +91-9890824574 | kshamdal@gmail.com`;
+    }
+
+    function previewPitch() {
+      const title = document.getElementById("inputJobTitle").value || "Senior Java Developer";
+      const company = document.getElementById("inputCompany").value || "Hiring Team";
+      const pitch = generateClientPitch(title, company);
+      document.getElementById("modalPitchText").value = pitch;
+      document.getElementById("pitchModal").style.display = "flex";
+    }
+
+    function openPitchModal(id) {
+      const job = currentJobs.find(j => j.id === id);
+      if (job) {
+        document.getElementById("modalPitchText").value = job.tailoredPitch || generateClientPitch(job.jobTitle, job.company);
+        document.getElementById("pitchModal").style.display = "flex";
+      }
+    }
+
+    function closePitchModal() {
+      document.getElementById("pitchModal").style.display = "none";
+      document.getElementById("copyToast").style.display = "none";
+    }
+
+    function copyPitchText() {
+      const text = document.getElementById("modalPitchText").value;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById("copyToast");
+        toast.style.display = "inline";
+        setTimeout(() => { toast.style.display = "none"; }, 2500);
+      });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Initialize on load
+    document.addEventListener("DOMContentLoaded", () => {
+      loadJobs();
+    });
+  </script>
+</body>
+</html>

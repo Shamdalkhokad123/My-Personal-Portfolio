@@ -17,6 +17,11 @@ public class WelcomeController {
 	public String welcomeCustom() {
 		return "welcomeCustom";
 	}
+
+	@GetMapping("/jobs")
+	public String jobsDashboard() {
+		return "jobsDashboard";
+	}
 	
 
 }

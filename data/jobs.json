@@ -1,0 +1,73 @@
+[ {
+  "id" : "1",
+  "jobTitle" : "Senior Java Developer",
+  "company" : "HCLTech",
+  "platform" : "Naukri",
+  "jobUrl" : "https://www.naukri.com/job-listings-java-developer-hcltech-hyderabad-6-to-10-years-of-experience",
+  "appliedDate" : "2026-10-22",
+  "status" : "Under Review",
+  "salaryPackage" : "15 - 20 LPA",
+  "location" : "Hyderabad",
+  "notes" : "Applied via Naukri. Microservices & Spring Boot focus. Contacted recruitment team.",
+  "tailoredPitch" : "Hi Hiring Team at HCLTech, I have applied for the Senior Java Developer role. With 5+ years of experience specializing in Java 17, Spring Boot, and scalable Microservices at Dot eVentures, I can deliver immediate value."
+}, {
+  "id" : "2",
+  "jobTitle" : "Senior Java Developer",
+  "company" : "Kumaran Systems",
+  "platform" : "LinkedIn",
+  "jobUrl" : "https://www.linkedin.com/jobs/search/?currentJobId=4482139812",
+  "appliedDate" : "2026-10-22",
+  "status" : "Applied",
+  "salaryPackage" : "14 - 18 LPA",
+  "location" : "Remote / Hybrid",
+  "notes" : "Applied via LinkedIn Easy Apply. Resume and portfolio submitted.",
+  "tailoredPitch" : "Hello Hiring Manager at Kumaran Systems, I am eager to contribute as a Senior Java Developer, bringing expertise in REST architecture, JWT security, and enterprise database tuning."
+}, {
+  "id" : "3",
+  "jobTitle" : "Java Full Stack Developer",
+  "company" : "TechDoQuest",
+  "platform" : "LinkedIn",
+  "jobUrl" : "https://www.linkedin.com/jobs/search/?currentJobId=4482139812",
+  "appliedDate" : "2026-10-22",
+  "status" : "Interviewing",
+  "salaryPackage" : "16 - 22 LPA",
+  "location" : "Hybrid",
+  "notes" : "HR responded on LinkedIn. Technical discussion scheduled.",
+  "tailoredPitch" : "Dear TechDoQuest Team, Thank you for reviewing my profile. Looking forward to discussing how my experience leading 10 developers and designing 50+ REST APIs aligns with your technical needs."
+}, {
+  "id" : "4",
+  "jobTitle" : "Senior Java Software Engineer",
+  "company" : "TrueID Technologies",
+  "platform" : "LinkedIn",
+  "jobUrl" : "https://www.linkedin.com/jobs/search/?currentJobId=4467382877",
+  "appliedDate" : "2026-10-22",
+  "status" : "Applied",
+  "salaryPackage" : "15 - 19 LPA",
+  "location" : "Hyderabad",
+  "notes" : "Applied via LinkedIn. Identity & enterprise platform role.",
+  "tailoredPitch" : "Hi TrueID Team, With strong background in secure Spring Security/JWT architectures and resilient microservices, I am excited about your identity security platform."
+}, {
+  "id" : "5",
+  "jobTitle" : "Java Backend Engineer",
+  "company" : "CMIND",
+  "platform" : "LinkedIn",
+  "jobUrl" : "https://www.linkedin.com/jobs/search/",
+  "appliedDate" : "2026-10-22",
+  "status" : "Applied",
+  "salaryPackage" : "14 - 17 LPA",
+  "location" : "Remote",
+  "notes" : "Direct recruiter outreach and application logged.",
+  "tailoredPitch" : "Hello CMIND Recruitment Team, I recently applied for your Java Backend position. Having built enterprise systems with 35% latency optimization, I am eager to connect."
+}, {
+  "id" : "6",
+  "jobTitle" : "Senior Java Developer",
+  "company" : "Tileti Eemeze Soft Tech",
+  "platform" : "Naukri",
+  "jobUrl" : "https://www.naukri.com/job-listings-java-developer-senior-tileti-eemeze-soft-tech",
+  "appliedDate" : "2026-10-22",
+  "status" : "Applied",
+  "salaryPackage" : "13 - 16 LPA",
+  "location" : "Hyderabad",
+  "notes" : "Applied on Naukri. Profile matched 100% key skills.",
+  "tailoredPitch" : "Hi Hiring Team, My background in Core Java, Spring Boot, Hibernate, and MySQL aligns closely with your position requirements."
+} ]
