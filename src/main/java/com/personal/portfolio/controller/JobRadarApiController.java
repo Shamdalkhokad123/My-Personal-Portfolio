@@ -37,4 +37,9 @@ public class JobRadarApiController {
         }
         return ResponseEntity.badRequest().body(result);
     }
+
+    @GetMapping("/status")
+    public ResponseEntity<Map<String, Object>> getRadarStatus() {
+        return ResponseEntity.ok(radarService.getRadarStatus());
+    }
 }

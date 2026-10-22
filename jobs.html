@@ -457,15 +457,22 @@
 
       <!-- Live Radar Pulse Banner -->
       <div class="radar-banner">
-        <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
           <span class="radar-pulse-dot"></span>
-          <div style="font-size: 0.9rem; color: #ffffff;">
-            <strong>RADAR ACTIVE:</strong> Monitoring <strong>LinkedIn</strong>, <strong>Naukri</strong> &amp; <strong>Indeed</strong> for <em>Senior Java Developer (5+ yrs, Spring Boot, Microservices)</em>
+          <div>
+            <div style="font-size: 0.95rem; color: #ffffff; font-weight: 700;">
+              RADAR DYNAMICALLY ACTIVE &bull; Hourly Auto-Scan: <span style="color: #34d399;">ON (Every 60 Mins)</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">
+              <span>Last scan: <strong id="radarLastScan" style="color: #fff;">Just now</strong></span> &bull; 
+              <span>Next automated scan: <strong id="radarNextScan" style="color: var(--accent-cyan);">in 1 hour</strong></span> &bull; 
+              <span>Target: <em>Senior Java Developer (5+ yrs, Spring Boot, Microservices)</em></span>
+            </div>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 12px;">
           <span class="notification-pill" onclick="switchView('radar')">
-            <span>⚡ <span id="radarCountBadge">6</span> High-Match Alerts</span>
+            <span>⚡ <span id="radarCountBadge">6</span> Matches Live</span>
           </span>
         </div>
       </div>
@@ -1041,9 +1048,27 @@
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    async function loadRadarStatus() {
+      try {
+        const res = await fetch('/api/radar/status');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.lastScanTime && document.getElementById("radarLastScan")) {
+            document.getElementById("radarLastScan").innerText = data.lastScanTime;
+          }
+          if (data.nextScanTime && document.getElementById("radarNextScan")) {
+            document.getElementById("radarNextScan").innerText = "at " + data.nextScanTime;
+          }
+        }
+      } catch (e) {}
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       loadRadarJobs();
       loadAppliedJobs();
+      loadRadarStatus();
+      setInterval(loadRadarStatus, 30000);
+      setInterval(loadRadarJobs, 60000);
     });
   </script>
 </body>
