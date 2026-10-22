@@ -1,332 +1,826 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shamdal Khokad | Portfolio</title>
- 
-  <link th:href="@{/css/welcomeCustom.css}" rel="stylesheet"  />
-  
-  <script>
-     document.addEventListener("DOMContentLoaded", function () {
-      const links = document.querySelectorAll(".sidebar a");
-      const sections = document.querySelectorAll(".content section");
-      const sidebar = document.querySelector(".sidebar");
-      const menuToggle = document.getElementById("menu-toggle");
+  <title>Shamdal Khokad | Senior Java Developer &amp; Full Stack Engineer</title>
+  <meta name="description" content="Portfolio of Shamdal Khokad — Senior Software Engineer with 5+ years of experience specializing in Java, Spring Boot, Microservices, REST APIs, and High-Performance Cloud Architecture.">
+  <link rel="icon" type="image/png" th:href="@{/images/shamdalprofilephoto.png}" href="../static/images/shamdalprofilephoto.png">
 
-      function activateSection(id) {
-        sections.forEach(section => section.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
-
-        links.forEach(link => link.classList.remove("active"));
-        document.querySelector(`.sidebar a[href='#${id}']`).classList.add("active");
-
-        if (window.innerWidth <= 768) {
-          sidebar.classList.remove("active");
-        }
-      }
-
-      links.forEach(link => {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          const id = this.getAttribute("href").substring(1);
-          activateSection(id);
-        });
-      });
-
-      activateSection(sections[0].id);
-
-      menuToggle.addEventListener("click", function () {
-        sidebar.classList.toggle("active");
-      });
-    });
-  </script>
+  <!-- Google Fonts & Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/welcomeCustom.css}" href="../static/css/welcomeCustom.css">
 </head>
 <body>
-<button id="menu-toggle" class="menu-toggle">☰</button>
-  <div class="sidebar">
-    <h2>My Portfolio</h2>
-    <a href="#hero">Home</a>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
-    <a href="#projects">Projects</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#contact">Contact</a>
-  </div>
 
-  <div class="content">
-    <section id="hero">
+  <!-- Ambient Dynamic Glowing Orbs -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Floating Glass Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-brand">
+      <div class="nav-logo-badge">SK</div>
+      <span>Shamdal Khokad</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="status-pill" title="Available for immediate Senior Java & Full Stack roles">
+        <span class="status-dot"></span>
+        <span>Open to Work</span>
+      </div>
+      <a th:href="@{/images/Latest_Resume_2025.pdf}" href="../static/images/Latest_Resume_2025.pdf" target="_blank" download class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Resume</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
       <div class="hero-grid">
-        <div class="hero-text">
-          <h1>Shamdal Khokad</h1>
-          <h3>Senior Java Developer<i>(4+ years of relevent experiance)</i>	
-          
-          	</h3>
-			
-		<a th:href="@{/images/Latest_Resume_2025.pdf}" download class="btn">Download Resume</a>
-          <div class="contact-links">
- 			 <p><strong>📞 Mobile:</strong> +91-9890824574</p>
- 			 <p><strong>📧 Email:</strong> <a href="mailto:shamdal@example.com">kshamdal@gmail.com</a></p>
-			  <p>
-			    <a href="https://github.com/Shamdalkhokad123" target="_blank">🌐 GitHub</a> |
-			    <a href="https://www.linkedin.com/in/shamdal-khokad-70277816a/" target="_blank">💼 LinkedIn</a> |
-			    <a href="https://www.instagram.com/shamdalkhokad/" target="_blank">📸 Instagram</a>
-			  </p>
-		</div>
-          
+        <div class="hero-text-col">
+          <div class="hero-badge">
+            <span style="display:inline-block; animation: pulseDot 1.5s infinite;">⚡</span>
+            <span>Senior Java &amp; Distributed Systems Engineer</span>
+          </div>
+
+          <h1 class="hero-title">
+            Architecting <span class="gradient-text">Robust &amp; Scalable</span> Enterprise Systems
+          </h1>
+
+          <div class="hero-dynamic">
+            <span>Specializing in&nbsp;</span>
+            <span id="typingText" style="color: var(--accent-cyan);"></span><span class="typing-cursor"></span>
+          </div>
+
+          <p class="hero-description">
+            Passionate Senior Java Developer with <strong>5+ years</strong> of expertise in Spring Boot, Microservices, JWT-secured REST APIs, Hibernate, and cloud-native architectures. Track record of mentoring engineering teams and optimizing high-concurrency systems.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Explore Projects</span>
+            </a>
+            <a th:href="@{/images/Latest_Resume_2025.pdf}" href="../static/images/Latest_Resume_2025.pdf" target="_blank" download class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <span>Get Resume (PDF)</span>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <span>Let's Connect</span>
+            </a>
+          </div>
+
+          <div class="social-strip">
+            <a href="https://github.com/Shamdalkhokad123" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub Profile">
+              <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/shamdal-khokad" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn Profile">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="mailto:kshamdal@gmail.com" class="social-btn" title="Send Email">
+              <svg viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg>
+            </a>
+            <a href="tel:+919890824574" class="social-btn" title="Phone Call">
+              <svg viewBox="0 0 24 24"><path d="M20 22.621l-3.521-6.795c-.456-.88-.135-1.956.732-2.454l1.458-.838c-.375-1.427-1.397-3.411-2.67-4.685s-3.258-2.295-4.685-2.67l-.838 1.458c-.498.867-1.574 1.188-2.454.732l-6.795-3.521c-.88-.456-1.188-1.574-.732-2.454l1.5-2.61c.421-.734 1.229-1.168 2.072-1.114 9.171.587 16.518 7.934 17.105 17.105.054.843-.38 1.651-1.114 2.072l-2.61 1.5c-.88.456-1.956.135-2.454-.732z"/></svg>
+            </a>
+          </div>
         </div>
-        <div class="hero-image">
-          <img th:src="@{/images/shamdalprofilephoto.png}" alt="Profile Picture">
+
+        <!-- Hero Visual Showcase -->
+        <div class="hero-visual">
+          <div class="avatar-wrapper">
+            <img th:src="@{/images/shamdalprofilephoto.png}" src="../static/images/shamdalprofilephoto.png" alt="Shamdal Khokad" class="avatar-img">
+            
+            <!-- Floating Stat Badges -->
+            <div class="float-card float-card-1">
+              <div class="float-icon float-icon-spring">🌱</div>
+              <div>
+                <div class="float-title">Spring Boot &amp; APIs</div>
+                <div class="float-sub">Enterprise Microservices</div>
+              </div>
+            </div>
+
+            <div class="float-card float-card-2">
+              <div class="float-icon float-icon-java">☕</div>
+              <div>
+                <div class="float-title">Java Full Stack</div>
+                <div class="float-sub">5+ Years Industry Exp</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="marquee">
-						<p>Core Java &nbsp;|&nbsp; Advanced Java &nbsp;|&nbsp; Design
-							Pattern &nbsp;|&nbsp; REST API &nbsp;|&nbsp; Microservices
-							&nbsp;|&nbsp; Spring Boot &nbsp;|&nbsp; Spring MVC &nbsp;|&nbsp;
-							MySQL &nbsp;|&nbsp; Hibernate &nbsp;|&nbsp; MAVEN &nbsp;|&nbsp;
-							Agile &nbsp;|&nbsp; Git & GitHub &nbsp;|&nbsp; JUnit
-							&nbsp;|&nbsp; HTML &nbsp;|&nbsp; CSS &nbsp;|&nbsp; JS</p>
-					</div>
-    </section>
-
-   <section id="about">
-  <h2>About Me</h2>
-
-  <!-- About Intro Card -->
-  <div class="about-card">
-    <p><strong>Highly skilled</strong> and <strong>result-oriented software engineer</strong> with over <strong>3.6 years</strong> of experience in software development, specializing in Java technologies. Proficient in analyzing, designing, and optimizing applications with a strong focus on <strong>system efficiency</strong>, <strong>API documentation</strong>, and <strong>software testing</strong>. Adept at ensuring <strong>seamless deployment</strong> and <strong>maintenance</strong> while contributing to robust and scalable solutions.</p>
-  </div>
-
-  <h3>Key Responsibilities:</h3>
-
-  <!-- Responsibilities Grid -->
-  <div class="responsibilities-grid">
-
-    <div class="responsibility-card">
-      <p><strong>Developed and integrated REST APIs</strong> using Spring Boot, ensuring seamless communication with front-end technologies like JSP and JavaScript.</p>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p><strong>Secured all REST APIs using JWT</strong>, implementing robust authentication and authorization mechanisms to enhance application security.</p>
+  <!-- Live Metrics Counter Strip -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num"><span class="counter" data-target="5">0</span>+</div>
+          <div class="stat-label">Years Professional Exp</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span class="counter" data-target="10">0</span>+</div>
+          <div class="stat-label">Developers Mentored &amp; Led</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span class="counter" data-target="50">0</span>+</div>
+          <div class="stat-label">Production REST APIs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span class="counter" data-target="35">0</span>%</div>
+          <div class="stat-label">System Performance Boost</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p>Designed, built, and maintained Java-based applications & websites.</p>
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Summary &amp; Engineering Philosophy</span>
+        <h2 class="section-title">About Me</h2>
+        <p class="section-desc">Specialized in scalable back-end architecture, high-efficiency data modeling, and seamless cross-functional team collaboration.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="glass-card">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 16px; color: #fff;">
+            Passionate Software Engineer with an Enterprise Mindset
+          </h3>
+          <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 16px;">
+            I am a result-oriented <strong>Senior Java Developer</strong> with over 5 years of rich experience building reliable web architectures, modernizing monoliths into microservices, and implementing resilient enterprise solutions.
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">
+            At <strong>Dot eVentures</strong>, I head technical modules, manage end-to-end API life cycles, and implement rigorous JWT authentication. Prior at <strong>Virtusa</strong>, I engineered core financial &amp; enterprise Java services, ensuring clean code, thorough testing, and zero-defect deliveries.
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <span class="skill-pill hot">📍 Hyderabad / Pune / Remote</span>
+            <span class="skill-pill">💼 Dot eVentures Pvt. Ltd.</span>
+            <span class="skill-pill">🎓 B.E. CSE (Govt. Engg College)</span>
+          </div>
+        </div>
+
+        <div class="about-highlights">
+          <div class="highlight-box">
+            <span class="highlight-icon">🚀</span>
+            <h4 class="highlight-title">Microservices &amp; REST</h4>
+            <p class="highlight-desc">Designed 50+ enterprise REST APIs with Spring Boot, Spring Cloud, Swagger documentation, and JWT authorization.</p>
+          </div>
+          <div class="highlight-box">
+            <span class="highlight-icon">⚡</span>
+            <h4 class="highlight-title">Performance Tuning</h4>
+            <p class="highlight-desc">Refactored legacy SQL queries, indexed tables, and tuned Hibernate ORM caches to achieve a 20-35% latency reduction.</p>
+          </div>
+          <div class="highlight-box">
+            <span class="highlight-icon">👥</span>
+            <h4 class="highlight-title">Technical Leadership</h4>
+            <p class="highlight-desc">Mentored team of 10 developers, conducted rigorous PR code reviews, and championed Agile Scrum best practices.</p>
+          </div>
+          <div class="highlight-box">
+            <span class="highlight-icon">🛡️</span>
+            <h4 class="highlight-title">Security &amp; Resilience</h4>
+            <p class="highlight-desc">Hardened API gateways, enforced RBAC with Spring Security &amp; JWT, and integrated automated JUnit testing.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p>Contributed to and participated in <strong>software and architectural development</strong> activities.</p>
+  <!-- Work Experience Timeline -->
+  <section class="section" id="experience" style="background: rgba(15, 23, 42, 0.3);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Career Milestones</span>
+        <h2 class="section-title">Work Experience</h2>
+        <p class="section-desc">Delivering high-impact enterprise engineering across product development and client delivery.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Experience 1: Dot eVentures -->
+        <div class="timeline-item active">
+          <div class="timeline-dot"></div>
+          <div class="glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Senior Java Developer</h3>
+                <div class="timeline-company">Dot eVentures Pvt. Ltd.</div>
+              </div>
+              <span class="timeline-date">April 2023 &ndash; Present</span>
+            </div>
+            <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 14px;">
+              Leading core back-end engineering for scalable educational and enterprise platforms, driving architectural decisions, and enhancing API throughput.
+            </p>
+            <ul class="timeline-bullets">
+              <li><strong>Led a high-velocity team of 10 developers</strong> in designing a distributed educational system, decreasing task processing turnaround by <strong>20%</strong>.</li>
+              <li><strong>Engineered &amp; Integrated 50+ RESTful microservices</strong> with Spring Boot, managing seamless communication with modern client front-ends.</li>
+              <li><strong>Implemented bulletproof JWT security</strong> with role-based access control (RBAC), safeguarding customer transaction data and eliminating unauthorized access.</li>
+              <li><strong>Optimized critical database queries &amp; caching layers</strong>, yielding an overall <strong>35% boost</strong> in system response time.</li>
+              <li><strong>Established comprehensive API documentation</strong> with Swagger/OpenAPI, standardizing integration protocols across cross-functional engineering teams.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Experience 2: Virtusa -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Associate Software Engineer</h3>
+                <div class="timeline-company">Virtusa</div>
+              </div>
+              <span class="timeline-date">May 2021 &ndash; Dec 2022</span>
+            </div>
+            <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 14px;">
+              Contributed to tier-1 enterprise Java web applications, bug resolution, module design, and continuous integration workflows.
+            </p>
+            <ul class="timeline-bullets">
+              <li>Developed and maintained core enterprise Java services following industry design patterns (Singleton, Factory, Strategy).</li>
+              <li>Engineered clean, testable code utilizing Spring MVC, Hibernate ORM, and MySQL databases with rigorous JUnit test suites.</li>
+              <li>Collaborated closely with solution architects and QA engineers during sprint cycles, resolving 100+ critical production defect tickets.</li>
+              <li>Prepared release packages and deployment scripts, adhering to strict CI/CD and version control standards in Git.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p>Developed well-designed, efficient, and testable code.</p>
+  <!-- Technical Skills Matrix -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Capabilities &amp; Tools</span>
+        <h2 class="section-title">Technical Skill Matrix</h2>
+        <p class="section-desc">A comprehensive inventory of backend frameworks, system design patterns, and engineering utilities.</p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Backend Card -->
+        <div class="glass-card">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">☕</span>
+            <span>Java &amp; Backend Engineering</span>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-pill hot">Java 8 / 11 / 17</span>
+            <span class="skill-pill hot">Spring Boot</span>
+            <span class="skill-pill hot">Microservices</span>
+            <span class="skill-pill hot">RESTful Web Services</span>
+            <span class="skill-pill">Spring MVC</span>
+            <span class="skill-pill">Spring Security &amp; JWT</span>
+            <span class="skill-pill">Hibernate / JPA</span>
+            <span class="skill-pill">Design Patterns</span>
+            <span class="skill-pill">Multithreading &amp; Concurrency</span>
+            <span class="skill-pill">JUnit &amp; Mockito</span>
+            <span class="skill-pill">Maven &amp; Gradle</span>
+          </div>
+        </div>
+
+        <!-- Database & Cloud Card -->
+        <div class="glass-card">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">🗄️</span>
+            <span>Databases &amp; Architecture</span>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-pill hot">MySQL</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Database Indexing &amp; Tuning</span>
+            <span class="skill-pill">Stored Procedures</span>
+            <span class="skill-pill hot">Distributed Systems</span>
+            <span class="skill-pill">API Gateway</span>
+            <span class="skill-pill">Caching (Redis basics)</span>
+            <span class="skill-pill">JSON / XML Processing</span>
+            <span class="skill-pill">Swagger / OpenAPI</span>
+          </div>
+        </div>
+
+        <!-- Frontend & DevOps Card -->
+        <div class="glass-card">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">⚡</span>
+            <span>DevOps, Frontend &amp; Agile</span>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-pill hot">Git &amp; GitHub</span>
+            <span class="skill-pill">Agile &amp; Scrum</span>
+            <span class="skill-pill">CI/CD Pipelines</span>
+            <span class="skill-pill">JIRA &amp; Confluence</span>
+            <span class="skill-pill">JavaScript (ES6+)</span>
+            <span class="skill-pill">HTML5 &amp; CSS3</span>
+            <span class="skill-pill">JSP &amp; Thymeleaf</span>
+            <span class="skill-pill">Postman API Testing</span>
+            <span class="skill-pill">Linux Shell</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p>Conducted <strong>software analysis, programming, testing, and debugging</strong>.</p>
+  <!-- Featured Projects Showcase -->
+  <section class="section" id="projects" style="background: rgba(15, 23, 42, 0.3);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Featured Work</span>
+        <h2 class="section-title">Key Projects &amp; Applications</h2>
+        <p class="section-desc">End-to-end architectures, enterprise CRUD workflows, and high-performance open source solutions.</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: Bhagavad Gita App -->
+        <div class="project-card">
+          <div class="project-media" style="background: linear-gradient(135deg, #1e1b4b, #312e81); display:flex; align-items:center; justify-content:center; text-align:center; padding: 20px;">
+            <div style="color: #c7d2fe;">
+              <div style="font-size: 3rem; margin-bottom: 8px;">🕉️</div>
+              <div style="font-family: var(--font-heading); font-weight:700; font-size:1.2rem; color:#fff;">Srimad Bhagavad Gita</div>
+              <div style="font-size: 0.85rem; color: #a5b4fc;">All 18 Chapters Interactive Platform</div>
+            </div>
+            <span class="project-badge-top">Full Stack Web App</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Srimad Bhagavad Gita Platform</h3>
+            <p class="project-desc">
+              Comprehensive web platform rendering all 18 chapters and 700 verses of the Bhagavad Gita with Sanskrit slokas, translations, verse search, and rich interactive chapter navigation. Built for high performance and smooth reading experience.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">Spring Boot</span>
+              <span class="project-tag">JSP / JS</span>
+              <span class="project-tag">REST API</span>
+              <span class="project-tag">CSS3</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/Shamdalkhokad123/Srimad-Bhagavad-Gita-All-18-Chapters" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span>View Repository</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Grocery Mart -->
+        <div class="project-card">
+          <div class="project-media">
+            <img th:src="@{/images/grocerymart111.jpg}" src="../static/images/grocerymart111.jpg" alt="Grocery Mart Web Application">
+            <span class="project-badge-top">E-Commerce Architecture</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">GroceryMart E-Commerce System</h3>
+            <p class="project-desc">
+              Full-featured online grocery commerce application featuring product catalogs, cart management, checkout workflows, admin inventory controls, and order transaction history with relational database persistence.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Spring MVC</span>
+              <span class="project-tag">Hibernate ORM</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">JSP</span>
+              <span class="project-tag">Bootstrap / CSS</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/Shamdalkhokad123/GroceryMart" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span>View Repository</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Employee Management System -->
+        <div class="project-card">
+          <div class="project-media">
+            <img th:src="@{/images/employeemanagementsystem.png}" src="../static/images/employeemanagementsystem.png" alt="Employee Management System">
+            <span class="project-badge-top">Enterprise Management</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Employee Management Portal</h3>
+            <p class="project-desc">
+              Comprehensive employee records management platform handling department allocations, payroll tracking, performance attributes, and full CRUD operations with secure relational data transactions.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Java / C#</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">HTML5 / CSS3</span>
+              <span class="project-tag">REST Endpoints</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/Shamdalkhokad123/Employee-management-sham" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span>View Repository</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Exam Management Software -->
+        <div class="project-card">
+          <div class="project-media" style="background: linear-gradient(135deg, #064e3b, #047857); display:flex; align-items:center; justify-content:center; text-align:center; padding: 20px;">
+            <div style="color: #a7f3d0;">
+              <div style="font-size: 3rem; margin-bottom: 8px;">📝</div>
+              <div style="font-family: var(--font-heading); font-weight:700; font-size:1.2rem; color:#fff;">Exam Management Software</div>
+              <div style="font-size: 0.85rem; color: #6ee7b7;">Automated Assessment &amp; Grading Engine</div>
+            </div>
+            <span class="project-badge-top">Testing &amp; Evaluation Engine</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Exam Management Software</h3>
+            <p class="project-desc">
+              Automated testing and student assessment system supporting timed quizzes, dynamic question banks, instant score computation, and reporting dashboards for educators and academic administrators.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Java Core</span>
+              <span class="project-tag">Spring Boot</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Swing / Web UI</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/Shamdalkhokad123/Exam-Management-Software" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span>View Repository</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p>Troubleshot and resolved reported issues, responding to queries in a timely manner.</p>
+  <!-- Education & Certifications Section -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Academic Background</span>
+        <h2 class="section-title">Education</h2>
+        <p class="section-desc">Solid technical engineering foundation with distinction performance.</p>
+      </div>
+
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div style="font-size: 2rem; margin-bottom: 12px;">🎓</div>
+          <h3 class="edu-degree">B.E. in Computer Science &amp; Engg</h3>
+          <div class="edu-inst">Govt. College of Engineering, Chandrapur</div>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">
+            Comprehensive curriculum covering Data Structures, Algorithms, Software Engineering, Object-Oriented Analysis, Operating Systems, and Distributed Computing.
+          </p>
+          <div class="edu-meta">
+            <span>2017 &ndash; 2020</span>
+            <strong style="color: var(--accent-emerald);">CGPA: 9.5 / 10</strong>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div style="font-size: 2rem; margin-bottom: 12px;">🏛️</div>
+          <h3 class="edu-degree">Diploma in Computer Engineering</h3>
+          <div class="edu-inst">Govt. Polytechnic Jalna</div>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">
+            Foundation in C, C++, Java Programming, Relational Databases, Web Technologies, and Computer Hardware/Networking fundamentals.
+          </p>
+          <div class="edu-meta">
+            <span>2015 &ndash; 2017</span>
+            <strong style="color: var(--accent-cyan);">Score: 82.00%</strong>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div style="font-size: 2rem; margin-bottom: 12px;">🏫</div>
+          <h3 class="edu-degree">Secondary School Certificate (SSC)</h3>
+          <div class="edu-inst">Swatantraveer Savarkar Vidyalaya, Khamgaon</div>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">
+            Completed high school with distinction across Mathematics, Science, and Languages, laying the analytical foundation for engineering studies.
+          </p>
+          <div class="edu-meta">
+            <span>Class 10th</span>
+            <strong style="color: var(--primary-light);">Score: 88.00%</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications Sub-block -->
+      <div id="certifications" style="margin-top: 60px;">
+        <div class="section-header" style="margin-bottom: 36px;">
+          <span class="section-tag">Credentials</span>
+          <h2 class="section-title" style="font-size: 2rem;">Professional Certifications</h2>
+        </div>
+
+        <div class="certs-grid">
+          <div class="cert-pill-card">
+            <span class="cert-icon">☕</span>
+            <div>
+              <div class="cert-name">Java Full Stack Development</div>
+              <div class="cert-issuer">Naresh Technology</div>
+            </div>
+          </div>
+
+          <div class="cert-pill-card">
+            <span class="cert-icon">🌱</span>
+            <div>
+              <div class="cert-name">Spring Boot Microservices</div>
+              <div class="cert-issuer">Udemy Professional Academy</div>
+            </div>
+          </div>
+
+          <div class="cert-pill-card">
+            <span class="cert-icon">🗄️</span>
+            <div>
+              <div class="cert-name">SQL &amp; Relational Databases</div>
+              <div class="cert-issuer">Naresh Technology</div>
+            </div>
+          </div>
+
+          <div class="cert-pill-card">
+            <span class="cert-icon">🐍</span>
+            <div>
+              <div class="cert-name">Python &amp; Django Framework</div>
+              <div class="cert-issuer">Naresh Technology</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p>Prepared and produced <strong>releases of software components</strong>.</p>
+  <!-- Contact & Get In Touch Section -->
+  <section class="section" id="contact" style="background: rgba(15, 23, 42, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Let's Connect</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-desc">Looking for a Senior Java Developer to lead back-end systems or scale microservices? Let's discuss your engineering opportunities.</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="glass-card contact-info-card">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: #fff;">Direct Contact Details</h3>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            Feel free to reach out directly via phone or email, or connect with me on LinkedIn and explore my code repositories on GitHub.
+          </p>
+
+          <div class="contact-item">
+            <div class="contact-icon-box">📧</div>
+            <div>
+              <div class="contact-item-title">Email Address</div>
+              <a href="mailto:kshamdal@gmail.com" class="contact-item-value" id="emailLink">kshamdal@gmail.com</a>
+              <button class="copy-btn" onclick="copyText('kshamdal@gmail.com', this)" title="Copy Email" style="margin-left: 8px; background: transparent; border: none; color: var(--accent-cyan); cursor: pointer; font-size: 0.8rem;">📋 Copy</button>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-box">📞</div>
+            <div>
+              <div class="contact-item-title">Phone / WhatsApp</div>
+              <a href="tel:+919890824574" class="contact-item-value">+91-9890824574</a>
+              <button class="copy-btn" onclick="copyText('+919890824574', this)" title="Copy Phone" style="margin-left: 8px; background: transparent; border: none; color: var(--accent-cyan); cursor: pointer; font-size: 0.8rem;">📋 Copy</button>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-box">💼</div>
+            <div>
+              <div class="contact-item-title">LinkedIn Profile</div>
+              <a href="https://www.linkedin.com/in/shamdal-khokad" target="_blank" rel="noopener noreferrer" class="contact-item-value">linkedin.com/in/shamdal-khokad</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-box">🌐</div>
+            <div>
+              <div class="contact-item-title">GitHub Portfolio</div>
+              <a href="https://github.com/Shamdalkhokad123" target="_blank" rel="noopener noreferrer" class="contact-item-value">github.com/Shamdalkhokad123</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Contact Form -->
+        <div class="glass-card">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: #fff; margin-bottom: 20px;">Send a Direct Message</h3>
+          <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+              <label for="name">Your Name / Recruiter Company</label>
+              <input type="text" id="name" class="form-control" placeholder="e.g. Talent Acquisition Team" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Work Email</label>
+              <input type="email" id="email" class="form-control" placeholder="recruiter@company.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Role / Subject</label>
+              <input type="text" id="subject" class="form-control" placeholder="Senior Java Developer Opportunity" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Job Description / Note</label>
+              <textarea id="message" class="form-control" placeholder="Hi Shamdal, we came across your profile and would love to discuss a Senior Java Developer opportunity..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span>Transmit Message</span>
+            </button>
+            <div id="formFeedback" style="display: none; padding: 12px; border-radius: 8px; font-size: 0.9rem; text-align: center; margin-top: 10px;"></div>
+          </form>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="responsibility-card">
-      <p>Produced detailed design documentation and improved code quality by implementing best practices.</p>
+  <!-- Modern Clean Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="nav-brand" style="justify-content: center; margin-bottom: 12px;">
+        <div class="nav-logo-badge">SK</div>
+        <span>Shamdal Khokad</span>
+      </div>
+      <p class="footer-text">
+        Senior Java Developer &bull; Microservices &bull; Cloud Architectures &bull; Hyderabad &bull; Pune &bull; Open to Remote
+      </p>
+      <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/Shamdalkhokad123" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/shamdal-khokad" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 20px;">
+        &copy; 2026 Shamdal Khokad. Crafted with precision for enterprise performance.
+      </p>
     </div>
+  </footer>
 
-  </div>
-</section>
+  <!-- Interactive JavaScript -->
+  <script>
+    // Typing Animation
+    const roles = [
+      "Spring Boot & Microservices Specialist",
+      "High-Performance REST API Engineer",
+      "Enterprise Full Stack Developer",
+      "Distributed Systems Architect"
+    ];
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    const typingElem = document.getElementById("typingText");
 
+    function typeEffect() {
+      if (!typingElem) return;
+      const currentRole = roles[roleIdx];
+      
+      if (isDeleting) {
+        typingElem.textContent = currentRole.substring(0, charIdx - 1);
+        charIdx--;
+      } else {
+        typingElem.textContent = currentRole.substring(0, charIdx + 1);
+        charIdx++;
+      }
 
-  <section id="experience">
-  <h2>Work Experience</h2>
+      let speed = isDeleting ? 40 : 80;
 
-  <div class="experience-container">
+      if (!isDeleting && charIdx === currentRole.length) {
+        speed = 1800; // Pause at end of text
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+        speed = 400; // Pause before typing next
+      }
 
-    <!-- Dot Eventures Experience Card -->
-    <div class="experience-card">
-      <h3>Senior Java Developer</h3>
-      <p class="company">Dot Eventures Pvt. Ltd.</p>
-      <span class="duration">April 2023 - Present</span>
-      <p><strong>A result-oriented software engineer</strong> with <strong>2 year 1 months</strong> of experience in analyzing, programming, testing and debugging of applications, completing documentation and procedures for installation and maintenance.</p>
+      setTimeout(typeEffect, speed);
+    }
 
-      <h4>Key Responsibilities:</h4>
-      <ul>
-        <li><strong>Led a team of 10 developers</strong> in creating a scalable educational application, reducing processing time by 20%.</li>
-        <li><strong>Developed and integrated REST APIs</strong> using Spring Boot, ensuring seamless communication with front-end technologies like JSP and JavaScript.</li>
-        <li><strong>Secured all REST APIs using JWT</strong>, implementing robust authentication and authorization mechanisms to enhance application security.</li>
-        <li>Optimized the existing codebase, resulting in a <strong>10% increase</strong> in application performance for key clients.</li>
-        <li>Developed and maintained documentation for over 50 APIs, ensuring compliance with industry standards.</li>
-        <li>Designed and deployed a new feature module that boosted customer engagement.</li>
-      </ul>
-    </div>
+    // Number Counter Animation
+    function animateCounters() {
+      const counters = document.querySelectorAll(".counter");
+      const speed = 40;
 
-    <!-- Virtusa Experience Card -->
-    <div class="experience-card">
-      <h3>Associate Software Engineer</h3>
-      <p class="company">Virtusa</p>
-      <span class="duration">May 2021 - Dec 2022</span>
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+          const inc = target / speed;
 
-      <h4>Key Responsibilities:</h4>
-      <ul>
-        <li>Designed, built, and maintained Java-based applications & websites.</li>
-        <li>Contributed and took part in software and architectural development activities.</li>
-        <li>Developed well-designed, efficient, and testable code.</li>
-        <li>Conducted software analysis, programming, testing, and debugging.</li>
-        <li>Troubleshot and resolved reported issues and replied to queries in a timely manner.</li>
-        <li>Prepared and produced releases of software components.</li>
-        <li>Produced detailed design documentation.</li>
-        <li>Improved code quality by implementing best practices.</li>
-      </ul>
-    </div>
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    }
 
-  </div>
-</section>
+    // Intersection Observer for Counters
+    const statsSection = document.querySelector(".stats-strip");
+    if (statsSection) {
+      let triggered = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !triggered) {
+            triggered = true;
+            animateCounters();
+          }
+        });
+      }, { threshold: 0.4 });
+      observer.observe(statsSection);
+    }
 
+    // Active Navbar Scroll Spy
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
 
-   <section id="skills">
-  <h2>Skills</h2>
-  <div class="skills-cards">
-    <div class="skill-card">
-      <h3>Backend</h3>
-      <ul class="skills-list">
-        <li>Core Java</li>
-        <li>Advanced Java</li>
-        <li>Design Pattern</li>
-        <li>REST API</li>
-        <li>Microservices</li>
-        <li>Spring Boot</li>
-        <li>Spring MVC</li>
-        <li>Hibernate</li>
-        <li>Maven</li>
-        <li>JUnit</li>
-      </ul>
-    </div>
-    <div class="skill-card">
-      <h3>Frontend</h3>
-      <ul class="skills-list">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-      </ul>
-    </div>
-    <div class="skill-card">
-      <h3>Database & Tools</h3>
-      <ul class="skills-list">
-        <li>MySQL</li>
-        <li>GIT & GitHub</li>
-        <li>Agile</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
 
- <section id="education">
-  <h2>Education</h2>
-  <div class="education-cards">
-    <div class="education-card">
-      <h3>BE in CSE</h3>
-      <p><strong>Institute:</strong> Govt. College of Engineering, Chandrapur</p>
-      <p><strong>Duration:</strong> 2017 - 2020</p>
-      <p><strong>Grade:</strong> 9.5</p>
-    </div>
-    <div class="education-card">
-      <h3>Diploma in CSE</h3>
-      <p><strong>Institute:</strong> Govt. Polytechnic Jalna</p>
-      <p><strong>Duration:</strong> 2015 - 2017</p>
-      <p><strong>Percentage:</strong> 82%</p>
-    </div>
-    <div class="education-card">
-      <h3>10th Class</h3>
-      <p><strong>School:</strong> Swatantraveer Savarkar Vidyalaya, Khamgaon</p>
-      <p><strong>Percentage:</strong> 88%</p>
-    </div>
-  </div>
-</section>
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
 
-   <section id="projects">
-  <h2>Projects</h2>
-  <p>Check out my GitHub for Java practice projects: 
-    <a href="https://github.com/Shamdalkhokad123/JavaPractices" target="_blank">GitHub Profile</a>
-  </p>
+    // Mobile Navigation Toggle
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navLinks");
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
 
-  <div class="projects-gallery">
+      navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+        });
+      });
+    }
 
-    <!-- Grocery Mart Project -->
-    <div class="project-card">
-      <img th:src="@{/images/grocerymart111.jpg}" style="width:500;height:250;" alt="Grocery Mart Project">
-      <h3>Grocery Mart</h3>
-      <p>This project is used to sell grocery-related items online.</p>
-      <p><strong>Tech Stack:</strong> Spring, Spring MVC, Hibernate, JSP, HTML, CSS, JS, MySQL</p>
-      <a href="https://github.com/Shamdalkhokad123/GroceryMart" target="_blank">GitHub</a>
-    </div>
+    // Copy to Clipboard Utility
+    function copyText(text, btnElem) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btnElem.innerText;
+        btnElem.innerText = "✓ Copied!";
+        btnElem.style.color = "var(--accent-emerald)";
+        setTimeout(() => {
+          btnElem.innerText = originalText;
+          btnElem.style.color = "var(--accent-cyan)";
+        }, 2000);
+      });
+    }
 
-    <!-- Employee Management System -->
-    <div class="project-card">
-      <img th:src="@{/images/employeemanagementsystem.png}" style="width:500;height:250;" alt="Employee Management System">
-      <h3>Employee Management System</h3>
-      <p>This project handles employee-related operations such as add, update, delete, and search.</p>
-      <p><strong>Tech Stack:</strong> C#.NET, ADO.NET, Visual Studio, HTML, CSS, JS, MySQL</p>
-      <a href="https://github.com/Shamdalkhokad123/Employee-management-sham" target="_blank">GitHub</a>
-    </div>
+    // Contact Form Handler
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value;
+      const feedback = document.getElementById("formFeedback");
 
-  </div>
-</section>
+      // Open mailto client with pre-filled content
+      const mailtoUrl = `mailto:kshamdal@gmail.com?subject=${encodeURIComponent(subject + " - " + name)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
+      
+      feedback.style.display = "block";
+      feedback.style.background = "rgba(16, 185, 129, 0.15)";
+      feedback.style.border = "1px solid rgba(16, 185, 129, 0.3)";
+      feedback.style.color = "#34d399";
+      feedback.innerHTML = "Opening email client to deliver message directly to <strong>kshamdal@gmail.com</strong>...";
 
-   <section id="certifications">
-  <h2>Certifications</h2>
-  <div class="certifications-container">
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 500);
+    }
 
-    <div class="cert-card">
-      <h3>Java Full Stack Development</h3>
-      <p>Naresh Technology</p>
-    </div>
-
-    <div class="cert-card">
-      <h3>Spring Boot Microservices</h3>
-      <p>Udemy</p>
-    </div>
-
-    <div class="cert-card">
-      <h3>SQL and Databases for Developers</h3>
-      <p>Naresh Technology</p>
-    </div>
-    
-    <div class="cert-card">
-      <h3>Python and Django</h3>
-      <p>Naresh Technology</p>
-    </div>
-    
-
-  </div>
-</section>
-
-
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <form action="#">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-      <p>Email: <a href="mailto:kshamdal@gmail.com">kshamdal@gmail.com</a> | Mobile: <a href="tel:9890824574">9890824574</a></p>
-      <p>
-        <a href="https://github.com/Shamdalkhokad123" target="_blank">🌐 GitHub</a> |
-			    <a href="https://www.linkedin.com/in/shamdal-khokad-70277816a/" target="_blank">💼 LinkedIn</a> |
-			    <a href="https://www.instagram.com/shamdalkhokad/" target="_blank">📸 Instagram</a>
-</p>
-    </section>
-
-    <footer>
-      <p>&copy; 2025 Shamdal Khokad</p>
-    </footer>
-  </div>
+    // Initialize on load
+    document.addEventListener("DOMContentLoaded", () => {
+      typeEffect();
+    });
+  </script>
 </body>
 </html>
