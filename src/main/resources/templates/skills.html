@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Skills &amp; Academic Foundation | Shamdal Khokad</title>
+  <meta name="description" content="Technical skill matrix, Java competencies, system design capabilities, education, and certifications of Shamdal Khokad — Senior Java Developer.">
+  <link rel="icon" type="image/png" th:href="@{/images/shamdalprofilephoto.png}" href="../static/images/shamdalprofilephoto.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/welcomeCustom.css}" href="../static/css/welcomeCustom.css">
+</head>
+<body class="page-fade-in">
+
+  <!-- Ambient Dynamic Glowing Orbs -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Floating Glass Navbar -->
+  <nav class="navbar" id="navbar">
+    <a th:href="@{/}" href="/" class="nav-brand">
+      <div class="nav-logo-badge">SK</div>
+      <span class="nav-name">Shamdal Khokad</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a th:href="@{/}" href="/" class="nav-link">Overview</a></li>
+      <li><a th:href="@{/experience}" href="/experience" class="nav-link">Experience</a></li>
+      
+      <!-- Projects with Dropdown -->
+      <li class="nav-dropdown-item">
+        <a th:href="@{/projects}" href="/projects" class="nav-link">
+          <span>Projects</span>
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">⚡</span>
+            <div>
+              <div class="dropdown-link-title">AI Job Radar Engine</div>
+              <div class="dropdown-link-sub">Spring Boot background scanner</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🕉️</span>
+            <div>
+              <div class="dropdown-link-title">Bhagavad Gita Platform</div>
+              <div class="dropdown-link-sub">Full Stack 18 Chapters web app</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🛒</span>
+            <div>
+              <div class="dropdown-link-title">GroceryMart E-Commerce</div>
+              <div class="dropdown-link-sub">Hibernate ORM &amp; MySQL transactions</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link all-link">
+            <span>Explore All Projects &rarr;</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- Skills with Dropdown -->
+      <li class="nav-dropdown-item">
+        <a th:href="@{/skills}" href="/skills" class="nav-link active">
+          <span>Skills</span>
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">☕</span>
+            <div>
+              <div class="dropdown-link-title">Java &amp; JVM Internals</div>
+              <div class="dropdown-link-sub">Concurrency, Virtual Threads &amp; GC</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🌱</span>
+            <div>
+              <div class="dropdown-link-title">Spring Boot &amp; Microservices</div>
+              <div class="dropdown-link-sub">Security, JWT &amp; Cloud Gateway</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🗄️</span>
+            <div>
+              <div class="dropdown-link-title">MySQL &amp; Redis Caching</div>
+              <div class="dropdown-link-sub">Query tuning, Indexing &amp; HikariCP</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link all-link">
+            <span>View All Competencies &rarr;</span>
+          </a>
+        </div>
+      </li>
+
+      <li><a th:href="@{/jobs}" href="/jobs" class="nav-link">Radar</a></li>
+      <li><a th:href="@{/contact}" href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="status-pill" title="Available for immediate Senior Java & Full Stack roles">
+        <span class="status-dot"></span>
+        <span>Open to Work</span>
+      </div>
+      <a th:href="@{/images/Latest_Resume_2025.pdf}" href="../static/images/Latest_Resume_2025.pdf" target="_blank" download class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Resume</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <div class="page-breadcrumb">
+        <a th:href="@{/}" href="/">Home</a>
+        <span>/</span>
+        <span style="color: #fff;">Skills &amp; Mastery</span>
+      </div>
+      <h1 class="page-title">Technical Skill Matrix &amp; Credentials</h1>
+      <p class="page-subtitle">
+        Deep technical competencies across the Java ecosystem, high-concurrency memory models, Spring Boot microservices, relational tuning, and certified academic excellence.
+      </p>
+    </div>
+  </header>
+
+  <!-- Categorized Skills Grid -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-header" style="text-align: left; margin-bottom: 24px;">
+        <span class="section-tag">Core Engineering Stack</span>
+        <h2 class="section-title">Backend Architecture &amp; System Capabilities</h2>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Java & JVM Internals Card -->
+        <div class="glass-card" style="border: 1px solid rgba(99, 102, 241, 0.3);">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">☕</span>
+            <span>Java &amp; JVM Internals</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px;">
+            Deep understanding of object lifecycle, memory ergonomics, thread scheduling, and modern language features.
+          </p>
+          <div class="skill-badges">
+            <span class="skill-pill hot">Java 8 / 11 / 17 / 21</span>
+            <span class="skill-pill hot">Multithreading &amp; Concurrency</span>
+            <span class="skill-pill hot">CompletableFuture &amp; Executors</span>
+            <span class="skill-pill">Garbage Collection Tuning (G1/ZGC)</span>
+            <span class="skill-pill">JVM Memory Model &amp; Profiling</span>
+            <span class="skill-pill">Generics &amp; Functional Interfaces</span>
+            <span class="skill-pill">Design Patterns (GoF)</span>
+            <span class="skill-pill">Java Stream API &amp; Lambdas</span>
+          </div>
+        </div>
+
+        <!-- Spring Ecosystem Card -->
+        <div class="glass-card" style="border: 1px solid rgba(6, 182, 212, 0.3);">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">🌱</span>
+            <span>Spring Boot &amp; Microservices</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px;">
+            Production microservice engineering with distributed security, declarative contracts, and cloud resilience.
+          </p>
+          <div class="skill-badges">
+            <span class="skill-pill hot">Spring Boot 2.x &amp; 3.x</span>
+            <span class="skill-pill hot">Microservices Architecture</span>
+            <span class="skill-pill hot">Spring Security &amp; JWT</span>
+            <span class="skill-pill hot">Spring Data JPA</span>
+            <span class="skill-pill">Hibernate ORM</span>
+            <span class="skill-pill">Spring MVC &amp; RESTful APIs</span>
+            <span class="skill-pill">Spring Cloud Gateway</span>
+            <span class="skill-pill">Resilience4j Circuit Breakers</span>
+            <span class="skill-pill">Spring Actuator &amp; Health Checks</span>
+            <span class="skill-pill">Swagger &amp; OpenAPI Docs</span>
+          </div>
+        </div>
+
+        <!-- Databases & Caching Card -->
+        <div class="glass-card" style="border: 1px solid rgba(16, 185, 129, 0.3);">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">🗄️</span>
+            <span>Databases &amp; High-Throughput Caching</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px;">
+            Schema design, indexing strategies, eliminating N+1 query overheads, and high-performance caching.
+          </p>
+          <div class="skill-badges">
+            <span class="skill-pill hot">MySQL 8.x</span>
+            <span class="skill-pill hot">Database Indexing &amp; Query Tuning</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill hot">Redis Caching &amp; Token Store</span>
+            <span class="skill-pill">HikariCP Connection Pool</span>
+            <span class="skill-pill">Stored Procedures &amp; Triggers</span>
+            <span class="skill-pill">Transaction Isolation Levels</span>
+            <span class="skill-pill">Database Migrations</span>
+          </div>
+        </div>
+
+        <!-- Testing & Code Quality Card -->
+        <div class="glass-card">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">🧪</span>
+            <span>Testing, Quality &amp; Resilience</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px;">
+            Rigorous automated test engineering guaranteeing zero-regression production delivery.
+          </p>
+          <div class="skill-badges">
+            <span class="skill-pill hot">JUnit 5</span>
+            <span class="skill-pill hot">Mockito Mocking Framework</span>
+            <span class="skill-pill">Integration Testing</span>
+            <span class="skill-pill">MockMvc Testing</span>
+            <span class="skill-pill">SonarQube Code Quality</span>
+            <span class="skill-pill">Code Reviews &amp; Refactoring</span>
+            <span class="skill-pill">Postman Automated Collections</span>
+          </div>
+        </div>
+
+        <!-- DevOps & Tooling Card -->
+        <div class="glass-card">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">⚙️</span>
+            <span>DevOps, Build &amp; Cloud Tools</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px;">
+            Modern CI/CD, containerization, build lifecycle management, and agile delivery.
+          </p>
+          <div class="skill-badges">
+            <span class="skill-pill hot">Git &amp; GitHub Version Control</span>
+            <span class="skill-pill hot">Maven &amp; Gradle Builds</span>
+            <span class="skill-pill">Docker Containerization</span>
+            <span class="skill-pill">CI/CD Pipeline Integration</span>
+            <span class="skill-pill">Linux Shell &amp; Bash Scripting</span>
+            <span class="skill-pill">JIRA &amp; Agile / Scrum Ceremonies</span>
+            <span class="skill-pill">Confluence Tech Docs</span>
+          </div>
+        </div>
+
+        <!-- Frontend Integration Card -->
+        <div class="glass-card">
+          <div class="skill-category-title">
+            <span style="font-size: 1.5rem;">⚡</span>
+            <span>Frontend &amp; UI Integration</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 14px;">
+            End-to-end integration between secure Java backends and modern responsive interfaces.
+          </p>
+          <div class="skill-badges">
+            <span class="skill-pill hot">Angular &amp; TypeScript</span>
+            <span class="skill-pill">JavaScript (ES6+)</span>
+            <span class="skill-pill">HTML5 &amp; Modern Vanilla CSS3</span>
+            <span class="skill-pill">Thymeleaf &amp; JSP Templating</span>
+            <span class="skill-pill">Fetch &amp; Axios REST Clients</span>
+            <span class="skill-pill">Responsive Design &amp; Flexbox/Grid</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Background Section -->
+  <section class="section" style="background: rgba(15, 23, 42, 0.4); border-top: 1px solid var(--border-card); border-bottom: 1px solid var(--border-card);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Academic Foundation</span>
+        <h2 class="section-title">Education &amp; Distinction</h2>
+        <p class="section-desc">Consistent distinction and academic excellence in Computer Science and Engineering.</p>
+      </div>
+
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div style="font-size: 2rem; margin-bottom: 12px;">🎓</div>
+          <h3 class="edu-degree">B.E. in Computer Science &amp; Engg</h3>
+          <div class="edu-inst">Govt. College of Engineering, Chandrapur</div>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">
+            Rigorous core curriculum in Data Structures, Advanced Algorithms, Operating Systems, Database Management Systems, Computer Networks, and Object-Oriented Software Design.
+          </p>
+          <div class="edu-meta">
+            <span>2017 &ndash; 2020</span>
+            <strong style="color: var(--accent-emerald); font-size: 1rem;">CGPA: 9.5 / 10</strong>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div style="font-size: 2rem; margin-bottom: 12px;">🏛️</div>
+          <h3 class="edu-degree">Diploma in Computer Engineering</h3>
+          <div class="edu-inst">Govt. Polytechnic Jalna</div>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">
+            Comprehensive foundation in C, C++, Core Java Programming, Relational Databases, Web Technologies, and Computer Architecture.
+          </p>
+          <div class="edu-meta">
+            <span>2015 &ndash; 2017</span>
+            <strong style="color: var(--accent-cyan); font-size: 1rem;">Score: 82.00%</strong>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div style="font-size: 2rem; margin-bottom: 12px;">🏫</div>
+          <h3 class="edu-degree">Secondary School Certificate (SSC)</h3>
+          <div class="edu-inst">Swatantraveer Savarkar Vidyalaya, Khamgaon</div>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">
+            Graduated high school with distinction across Mathematics, Science, and Languages, establishing a rigorous analytical and problem-solving mindset.
+          </p>
+          <div class="edu-meta">
+            <span>Class 10th</span>
+            <strong style="color: var(--primary-light); font-size: 1rem;">Score: 88.00%</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Professional Certifications -->
+      <div style="margin-top: 50px;">
+        <div class="section-header" style="text-align: left; margin-bottom: 24px;">
+          <span class="section-tag">Credentials</span>
+          <h2 class="section-title" style="font-size: 1.8rem;">Professional Certifications</h2>
+        </div>
+
+        <div class="certs-grid">
+          <div class="cert-pill-card">
+            <span class="cert-icon">☕</span>
+            <div>
+              <div class="cert-name">Java Full Stack Development</div>
+              <div class="cert-issuer">Naresh Technology</div>
+            </div>
+          </div>
+
+          <div class="cert-pill-card">
+            <span class="cert-icon">🌱</span>
+            <div>
+              <div class="cert-name">Spring Boot Microservices</div>
+              <div class="cert-issuer">Udemy Professional Academy</div>
+            </div>
+          </div>
+
+          <div class="cert-pill-card">
+            <span class="cert-icon">🗄️</span>
+            <div>
+              <div class="cert-name">SQL &amp; Relational Databases</div>
+              <div class="cert-issuer">Naresh Technology</div>
+            </div>
+          </div>
+
+          <div class="cert-pill-card">
+            <span class="cert-icon">🐍</span>
+            <div>
+              <div class="cert-name">Python &amp; Django Framework</div>
+              <div class="cert-issuer">Naresh Technology</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross Navigation Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="text-align: left; margin-bottom: 20px;">
+        <span class="section-tag">Next Steps</span>
+        <h2 class="section-title">Continue Exploring Shamdal's Portfolio</h2>
+      </div>
+
+      <div class="cross-nav-grid">
+        <a th:href="@{/experience}" href="/experience" class="cross-nav-card">
+          <div class="cross-nav-icon">💼</div>
+          <div class="cross-nav-title">Career Experience</div>
+          <div class="cross-nav-desc">Detailed employment track record, engineering team leadership, and latency deliverables.</div>
+          <div class="cross-nav-action">View Experience &rarr;</div>
+        </a>
+
+        <a th:href="@{/projects}" href="/projects" class="cross-nav-card">
+          <div class="cross-nav-icon">🏗️</div>
+          <div class="cross-nav-title">System Blueprints &amp; Projects</div>
+          <div class="cross-nav-desc">Inspect architectural deep-dives, concurrency patterns, and microservice ecosystem implementations.</div>
+          <div class="cross-nav-action">Explore Blueprints &rarr;</div>
+        </a>
+
+        <a th:href="@{/contact}" href="/contact" class="cross-nav-card">
+          <div class="cross-nav-icon">📬</div>
+          <div class="cross-nav-title">Hire &amp; Connect</div>
+          <div class="cross-nav-desc">Schedule an interview, send a job opportunity note, or download the latest PDF resume.</div>
+          <div class="cross-nav-action">Get in Touch &rarr;</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="nav-brand" style="justify-content: center; margin-bottom: 12px;">
+        <div class="nav-logo-badge">SK</div>
+        <span class="nav-name">Shamdal Khokad</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+        Senior Java Developer &bull; Microservices Architect &bull; Full Stack Cloud Engineer
+      </p>
+
+      <div class="footer-links" style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; font-size: 0.9rem;">
+        <a th:href="@{/}" href="/" style="color: var(--text-muted); text-decoration: none;">Overview</a>
+        <a th:href="@{/experience}" href="/experience" style="color: var(--text-muted); text-decoration: none;">Experience</a>
+        <a th:href="@{/projects}" href="/projects" style="color: var(--text-muted); text-decoration: none;">Projects</a>
+        <a th:href="@{/skills}" href="/skills" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">Skills</a>
+        <a th:href="@{/jobs}" href="/jobs" style="color: var(--text-muted); text-decoration: none;">Job Radar</a>
+        <a th:href="@{/contact}" href="/contact" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+      </div>
+
+      <div class="copyright" style="color: rgba(255,255,255,0.4); font-size: 0.8rem;">
+        &copy; 2026 Shamdal Khokad. Engineered with Java 21, Spring Boot 3 &amp; High-Performance Architecture.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navLinks");
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    }
+  </script>
+</body>
+</html>

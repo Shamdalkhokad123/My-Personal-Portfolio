@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Experience &amp; Leadership | Shamdal Khokad</title>
+  <meta name="description" content="Career timeline and enterprise contributions of Shamdal Khokad — Senior Software Engineer specializing in Java, Spring Boot, Microservices, and High-Throughput Distributed Systems.">
+  <link rel="icon" type="image/png" th:href="@{/images/shamdalprofilephoto.png}" href="../static/images/shamdalprofilephoto.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/welcomeCustom.css}" href="../static/css/welcomeCustom.css">
+</head>
+<body class="page-fade-in">
+
+  <!-- Ambient Dynamic Glowing Orbs -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Floating Glass Navbar -->
+  <nav class="navbar" id="navbar">
+    <a th:href="@{/}" href="/" class="nav-brand">
+      <div class="nav-logo-badge">SK</div>
+      <span class="nav-name">Shamdal Khokad</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a th:href="@{/}" href="/" class="nav-link">Overview</a></li>
+      <li><a th:href="@{/experience}" href="/experience" class="nav-link active">Experience</a></li>
+      
+      <!-- Projects with Dropdown -->
+      <li class="nav-dropdown-item">
+        <a th:href="@{/projects}" href="/projects" class="nav-link">
+          <span>Projects</span>
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">⚡</span>
+            <div>
+              <div class="dropdown-link-title">AI Job Radar Engine</div>
+              <div class="dropdown-link-sub">Spring Boot background scanner</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🕉️</span>
+            <div>
+              <div class="dropdown-link-title">Bhagavad Gita Platform</div>
+              <div class="dropdown-link-sub">Full Stack 18 Chapters web app</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🛒</span>
+            <div>
+              <div class="dropdown-link-title">GroceryMart E-Commerce</div>
+              <div class="dropdown-link-sub">Hibernate ORM &amp; MySQL transactions</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link all-link">
+            <span>Explore All Projects &rarr;</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- Skills with Dropdown -->
+      <li class="nav-dropdown-item">
+        <a th:href="@{/skills}" href="/skills" class="nav-link">
+          <span>Skills</span>
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">☕</span>
+            <div>
+              <div class="dropdown-link-title">Java &amp; JVM Internals</div>
+              <div class="dropdown-link-sub">Concurrency, Virtual Threads &amp; GC</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🌱</span>
+            <div>
+              <div class="dropdown-link-title">Spring Boot &amp; Microservices</div>
+              <div class="dropdown-link-sub">Security, JWT &amp; Cloud Gateway</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🗄️</span>
+            <div>
+              <div class="dropdown-link-title">MySQL &amp; Redis Caching</div>
+              <div class="dropdown-link-sub">Query tuning, Indexing &amp; HikariCP</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link all-link">
+            <span>View All Competencies &rarr;</span>
+          </a>
+        </div>
+      </li>
+
+      <li><a th:href="@{/jobs}" href="/jobs" class="nav-link">Radar</a></li>
+      <li><a th:href="@{/contact}" href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="status-pill" title="Available for immediate Senior Java & Full Stack roles">
+        <span class="status-dot"></span>
+        <span>Open to Work</span>
+      </div>
+      <a th:href="@{/images/Latest_Resume_2025.pdf}" href="../static/images/Latest_Resume_2025.pdf" target="_blank" download class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Resume</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <div class="page-breadcrumb">
+        <a th:href="@{/}" href="/">Home</a>
+        <span>/</span>
+        <span style="color: #fff;">Career Experience</span>
+      </div>
+      <h1 class="page-title">Enterprise Engineering &amp; Team Leadership</h1>
+      <p class="page-subtitle">
+        A track record of leading high-performance engineering teams, breaking monoliths into microservices, and hardening high-throughput distributed systems across enterprise environments.
+      </p>
+    </div>
+  </header>
+
+  <!-- Key Quantified Benchmarks -->
+  <section class="section" style="padding-top: 40px; padding-bottom: 20px;">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card" style="border-color: rgba(99, 102, 241, 0.3);">
+          <div class="stat-num" style="color: var(--primary-light);">10+</div>
+          <div class="stat-label">Developers Mentored &amp; Led</div>
+        </div>
+        <div class="stat-card" style="border-color: rgba(6, 182, 212, 0.3);">
+          <div class="stat-num" style="color: var(--accent-cyan);">35%</div>
+          <div class="stat-label">API Latency Reduction</div>
+        </div>
+        <div class="stat-card" style="border-color: rgba(16, 185, 129, 0.3);">
+          <div class="stat-num" style="color: var(--accent-emerald);">25%</div>
+          <div class="stat-label">Reduction in Production Defects</div>
+        </div>
+        <div class="stat-card" style="border-color: rgba(245, 158, 11, 0.3);">
+          <div class="stat-num" style="color: #fbbf24;">99.99%</div>
+          <div class="stat-label">High-Availability SLA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- In-Depth Career Timeline -->
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div class="timeline">
+        <!-- Role 1: Dot eVentures -->
+        <div class="timeline-item active">
+          <div class="timeline-dot"></div>
+          <div class="glass-card" style="border: 1px solid rgba(99, 102, 241, 0.35);">
+            <div class="timeline-header">
+              <div>
+                <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; font-weight: 600; text-transform: uppercase;">Current Senior Role</span>
+                <h2 class="timeline-role" style="font-size: 1.5rem; margin-top: 6px;">Senior Software Engineer</h2>
+                <div class="timeline-company" style="font-size: 1.1rem; color: #fff;">
+                  Dot eVentures Private Limited &bull; <span style="font-size: 0.9rem; color: var(--text-sub); font-weight: normal;">Full-time</span>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 3px;">📍 Hyderabad, Telangana, India &bull; On-site</div>
+              </div>
+              <span class="timeline-date" style="background: rgba(99, 102, 241, 0.15); color: var(--primary-light); padding: 6px 14px; border-radius: 20px; font-weight: 600;">
+                Apr 2023 &ndash; Present &bull; 3 yrs 7 mos
+              </span>
+            </div>
+
+            <p style="color: var(--text-sub); font-size: 1rem; margin-top: 14px; margin-bottom: 16px; line-height: 1.7;">
+              Leading core engineering initiatives, designing distributed backend systems, and optimizing enterprise Java/Spring Boot applications to handle growing transaction concurrency.
+            </p>
+
+            <div style="font-weight: 700; color: #fff; font-size: 0.95rem; margin-top: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-cyan);">⚡</span> Key Architectural Contributions &amp; Deliverables:
+            </div>
+            <ul class="timeline-bullets" style="display: flex; flex-direction: column; gap: 10px;">
+              <li><strong>Led a high-performing engineering team of 10+ developers:</strong> Spearheaded sprint planning, daily stand-ups, technical task breakdowns, and strict pull-request reviews to ensure code quality standards.</li>
+              <li><strong>Engineered Scalable REST API Microservices:</strong> Architected Spring Boot microservices with Spring Data JPA and Hibernate, integrating seamlessly with Angular single-page applications.</li>
+              <li><strong>Security Hardening &amp; Token Architecture:</strong> Implemented JWT authentication chains and Spring Security authorization with role-based access control (RBAC), preventing privilege escalation vulnerabilities.</li>
+              <li><strong>Legacy Refactoring to Cloud Microservices:</strong> Successfully decomposed legacy monolith modules into independent Spring Boot microservices, achieving a <strong>35% reduction in API response latency</strong>.</li>
+              <li><strong>Automated Testing &amp; Quality Engineering:</strong> Established robust unit and integration testing pipelines with JUnit 5 and Mockito, reducing post-release defect counts by <strong>25%</strong>.</li>
+              <li><strong>Production Database Query Optimization:</strong> Profiling slow SQL queries, introducing compound indexing on MySQL tables, and eliminating Hibernate N+1 query bottlenecks.</li>
+            </ul>
+
+            <div class="metric-pill-strip" style="margin-top: 20px;">
+              <span class="metric-pill success">✓ 35% Latency Reduction</span>
+              <span class="metric-pill">✓ Team Leadership (10+)</span>
+              <span class="metric-pill warning">✓ Zero-Downtime Releases</span>
+              <span class="metric-pill">✓ JWT Security Architecture</span>
+            </div>
+
+            <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="color: var(--accent-cyan); font-size: 0.85rem; font-weight: 600;">Technologies Used:</span>
+              <span class="skill-pill">Java 17</span>
+              <span class="skill-pill">Spring Boot 3</span>
+              <span class="skill-pill">Microservices</span>
+              <span class="skill-pill">REST APIs</span>
+              <span class="skill-pill">Spring Security &amp; JWT</span>
+              <span class="skill-pill">Hibernate ORM</span>
+              <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">Angular</span>
+              <span class="skill-pill">JUnit 5</span>
+              <span class="skill-pill">Git / CI/CD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role 2: Virtusa -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card">
+            <div class="timeline-header">
+              <div>
+                <h2 class="timeline-role" style="font-size: 1.4rem;">Associate Engineer - Technology</h2>
+                <div class="timeline-company" style="font-size: 1.05rem; color: #fff;">
+                  Virtusa &bull; <span style="font-size: 0.9rem; color: var(--text-sub); font-weight: normal;">Full-time</span>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 3px;">📍 Hyderabad, Telangana, India &bull; On-site</div>
+              </div>
+              <span class="timeline-date" style="background: rgba(255, 255, 255, 0.06); color: var(--text-sub); padding: 6px 14px; border-radius: 20px; font-weight: 600;">
+                May 2021 &ndash; Dec 2022 &bull; 1 yr 8 mos
+              </span>
+            </div>
+
+            <p style="color: var(--text-sub); font-size: 0.95rem; margin-top: 14px; margin-bottom: 16px; line-height: 1.7;">
+              Core Java Software Engineer contributing to enterprise client applications, secure RESTful microservices, and relational database schema design.
+            </p>
+
+            <div style="font-weight: 700; color: #fff; font-size: 0.95rem; margin-top: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-cyan);">⚡</span> Technical Contributions &amp; Achievements:
+            </div>
+            <ul class="timeline-bullets" style="display: flex; flex-direction: column; gap: 10px;">
+              <li><strong>Enterprise Web Application Engineering:</strong> Built and supported robust enterprise backend modules utilizing Core Java, Spring MVC, Spring Boot, and Hibernate ORM.</li>
+              <li><strong>REST API Design &amp; Integration:</strong> Authored clean, standard RESTful contracts and integrated them with frontend interfaces built with HTML5, CSS3, JavaScript, and JSP.</li>
+              <li><strong>Comprehensive Test Coverage:</strong> Wrote unit and integration test suites using JUnit and Mockito, ensuring bug-free release candidates.</li>
+              <li><strong>Relational Database Management:</strong> Managed complex SQL queries, database indexing, and stored procedures across MySQL and PostgreSQL databases.</li>
+              <li><strong>Production Bug Resolution:</strong> Investigated complex production log traces and resolved critical bug tickets strictly within enterprise SLA limits.</li>
+              <li><strong>Agile Collaboration:</strong> Active contributor in daily scrums, sprint planning, peer design reviews, and Git branch workflows.</li>
+            </ul>
+
+            <div class="metric-pill-strip" style="margin-top: 20px;">
+              <span class="metric-pill success">✓ 100% SLA Compliance</span>
+              <span class="metric-pill">✓ Clean Code Architecture</span>
+              <span class="metric-pill">✓ Enterprise Testing Suite</span>
+            </div>
+
+            <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="color: var(--accent-cyan); font-size: 0.85rem; font-weight: 600;">Technologies Used:</span>
+              <span class="skill-pill">Core Java</span>
+              <span class="skill-pill">Spring Boot</span>
+              <span class="skill-pill">Spring MVC</span>
+              <span class="skill-pill">Hibernate</span>
+              <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">JUnit &amp; Mockito</span>
+              <span class="skill-pill">REST APIs</span>
+              <span class="skill-pill">Git</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross Navigation Section -->
+  <section class="section" style="background: rgba(15, 23, 42, 0.5); border-top: 1px solid var(--border-card);">
+    <div class="container">
+      <div class="section-header" style="text-align: left; margin-bottom: 20px;">
+        <span class="section-tag">Next Steps</span>
+        <h2 class="section-title">Continue Exploring Shamdal's Portfolio</h2>
+      </div>
+
+      <div class="cross-nav-grid">
+        <a th:href="@{/projects}" href="/projects" class="cross-nav-card">
+          <div class="cross-nav-icon">🏗️</div>
+          <div class="cross-nav-title">System Blueprints &amp; Projects</div>
+          <div class="cross-nav-desc">Inspect architectural deep-dives, concurrency patterns, and microservice ecosystem implementations.</div>
+          <div class="cross-nav-action">Explore Blueprints &rarr;</div>
+        </a>
+
+        <a th:href="@{/skills}" href="/skills" class="cross-nav-card">
+          <div class="cross-nav-icon">⚡</div>
+          <div class="cross-nav-title">Technical Skills Matrix</div>
+          <div class="cross-nav-desc">Review Java 17/21 capabilities, JVM garbage collection tuning, Spring Boot 3, and database ergonomics.</div>
+          <div class="cross-nav-action">Inspect Skills &rarr;</div>
+        </a>
+
+        <a th:href="@{/contact}" href="/contact" class="cross-nav-card">
+          <div class="cross-nav-icon">📬</div>
+          <div class="cross-nav-title">Hire &amp; Connect</div>
+          <div class="cross-nav-desc">Schedule an interview, send a job opportunity note, or download the latest PDF resume.</div>
+          <div class="cross-nav-action">Get in Touch &rarr;</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="nav-brand" style="justify-content: center; margin-bottom: 12px;">
+        <div class="nav-logo-badge">SK</div>
+        <span class="nav-name">Shamdal Khokad</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+        Senior Java Developer &bull; Microservices Architect &bull; Full Stack Cloud Engineer
+      </p>
+
+      <div class="footer-links" style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; font-size: 0.9rem;">
+        <a th:href="@{/}" href="/" style="color: var(--text-muted); text-decoration: none;">Overview</a>
+        <a th:href="@{/experience}" href="/experience" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">Experience</a>
+        <a th:href="@{/projects}" href="/projects" style="color: var(--text-muted); text-decoration: none;">Projects</a>
+        <a th:href="@{/skills}" href="/skills" style="color: var(--text-muted); text-decoration: none;">Skills</a>
+        <a th:href="@{/jobs}" href="/jobs" style="color: var(--text-muted); text-decoration: none;">Job Radar</a>
+        <a th:href="@{/contact}" href="/contact" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+      </div>
+
+      <div class="copyright" style="color: rgba(255,255,255,0.4); font-size: 0.8rem;">
+        &copy; 2026 Shamdal Khokad. Engineered with Java 21, Spring Boot 3 &amp; High-Performance Architecture.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navLinks");
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    }
+  </script>
+</body>
+</html>

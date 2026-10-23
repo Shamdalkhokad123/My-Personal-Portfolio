@@ -419,13 +419,111 @@
     }
   </style>
 </head>
-<body>
+<body class="page-fade-in">
 
   <!-- Ambient Glow -->
   <div class="ambient-glow" aria-hidden="true"></div>
 
-  <!-- Dashboard Top Navbar -->
-  <div class="dashboard-header">
+  <!-- Floating Glass Navbar -->
+  <nav class="navbar" id="navbar">
+    <a th:href="@{/}" href="/" class="nav-brand">
+      <div class="nav-logo-badge">SK</div>
+      <span class="nav-name">Shamdal Khokad</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a th:href="@{/}" href="/" class="nav-link">Overview</a></li>
+      <li><a th:href="@{/experience}" href="/experience" class="nav-link">Experience</a></li>
+      
+      <!-- Projects with Dropdown -->
+      <li class="nav-dropdown-item">
+        <a th:href="@{/projects}" href="/projects" class="nav-link">
+          <span>Projects</span>
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">⚡</span>
+            <div>
+              <div class="dropdown-link-title">AI Job Radar Engine</div>
+              <div class="dropdown-link-sub">Spring Boot background scanner</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🕉️</span>
+            <div>
+              <div class="dropdown-link-title">Bhagavad Gita Platform</div>
+              <div class="dropdown-link-sub">Full Stack 18 Chapters web app</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🛒</span>
+            <div>
+              <div class="dropdown-link-title">GroceryMart E-Commerce</div>
+              <div class="dropdown-link-sub">Hibernate ORM &amp; MySQL transactions</div>
+            </div>
+          </a>
+          <a th:href="@{/projects}" href="/projects" class="nav-dropdown-link all-link">
+            <span>Explore All Projects &rarr;</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- Skills with Dropdown -->
+      <li class="nav-dropdown-item">
+        <a th:href="@{/skills}" href="/skills" class="nav-link">
+          <span>Skills</span>
+          <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">☕</span>
+            <div>
+              <div class="dropdown-link-title">Java &amp; JVM Internals</div>
+              <div class="dropdown-link-sub">Concurrency, Virtual Threads &amp; GC</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🌱</span>
+            <div>
+              <div class="dropdown-link-title">Spring Boot &amp; Microservices</div>
+              <div class="dropdown-link-sub">Security, JWT &amp; Cloud Gateway</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link">
+            <span class="dropdown-link-icon">🗄️</span>
+            <div>
+              <div class="dropdown-link-title">MySQL &amp; Redis Caching</div>
+              <div class="dropdown-link-sub">Query tuning, Indexing &amp; HikariCP</div>
+            </div>
+          </a>
+          <a th:href="@{/skills}" href="/skills" class="nav-dropdown-link all-link">
+            <span>View All Competencies &rarr;</span>
+          </a>
+        </div>
+      </li>
+
+      <li><a th:href="@{/jobs}" href="/jobs" class="nav-link active">Radar</a></li>
+      <li><a th:href="@{/contact}" href="/contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="status-pill" title="Available for immediate Senior Java & Full Stack roles">
+        <span class="status-dot"></span>
+        <span>Open to Work</span>
+      </div>
+      <a th:href="@{/images/Latest_Resume_2025.pdf}" href="../static/images/Latest_Resume_2025.pdf" target="_blank" download class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Resume</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Dashboard Top Header -->
+  <div class="dashboard-header" style="padding-top: 120px;">
     <div class="container">
       <a href="/" th:href="@{/}" class="dash-nav-back">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -1064,6 +1162,14 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      const navToggle = document.getElementById("navToggle");
+      const navMenu = document.getElementById("navLinks");
+      if (navToggle && navMenu) {
+        navToggle.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+        });
+      }
+
       loadRadarJobs();
       loadAppliedJobs();
       loadRadarStatus();
